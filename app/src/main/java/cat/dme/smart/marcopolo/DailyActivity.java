@@ -12,4 +12,14 @@ public class DailyActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daily);
     }
+
+    /*
+
+        btnCredits.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CreditsActivity.class);
+                startActivity(intent);
+            }
+        });*/
 }
