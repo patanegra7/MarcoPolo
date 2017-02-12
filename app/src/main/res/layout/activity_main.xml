@@ -11,12 +11,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <!-- Layout for content is here. This can be a RelativeLayout  -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Coming soon!"
-        android:textAlignment="center"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/current.trip"
+            android:textAlignment="center"/>
+
+    </LinearLayout>
+
 
 </LinearLayout>
-

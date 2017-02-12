@@ -13,16 +13,10 @@ import android.view.MenuItem;
 
 public abstract class BaseMenuActivity extends AppCompatActivity {
 
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//
-//        // Find the toolbar view inside the activity layout
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        // Sets the Toolbar to act as the ActionBar for this Activity window.
-//        // Make sure the toolbar exists in the activity and is not null
-//        setSupportActionBar(toolbar);
-//    }
+    protected void configureToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -42,12 +36,23 @@ public abstract class BaseMenuActivity extends AppCompatActivity {
                 intent = new Intent(this, SummaryActivity.class);
                 startActivity(intent);
                 return(true);
+            case R.id.settings:
+                intent = new Intent(this, SettingsActivity.class);
+                startActivity(intent);
+                return(true);
+            case R.id.export:
+                intent = new Intent(this, ExportActivity.class);
+                startActivity(intent);
+                return(true);
             case R.id.about:
                 intent = new Intent(this, CreditsActivity.class);
                 startActivity(intent);
                 return(true);
             case R.id.exit:
-                //add the function to perform here
+                intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_HOME);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
                 return(true);
         }
         return(super.onOptionsItemSelected(item));
