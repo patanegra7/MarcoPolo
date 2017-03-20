@@ -6,5 +6,6 @@ package cat.dme.smart.marcopolo.contants;
 
 public enum TripStatus {
     LIVE,
-    ENDED;
+    COMING_SOON,
+    FINISH;
 }

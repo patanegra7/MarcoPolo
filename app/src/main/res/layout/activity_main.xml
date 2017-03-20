@@ -21,7 +21,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/current.trip"
+            android:id="@+id/current.trip.destination"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/current.trip.description"
             android:textAlignment="center"/>
 
     </LinearLayout>

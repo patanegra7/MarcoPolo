@@ -7,7 +7,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 /**
- * Created by str_dme on 25/07/14.
+ * Activity that shows credits.
+ *
+ * Created by VIddA Software - DME Creaciones.
  */
 public class CreditsActivity extends BaseMenuActivity {
     @Override
@@ -20,7 +22,7 @@ public class CreditsActivity extends BaseMenuActivity {
         String versionName = BuildConfig.VERSION_NAME;
 
         TextView tvVersion = (TextView) findViewById(R.id.textVersion);
-        tvVersion.setText(versionName);
+        tvVersion.setText(this.getString(R.string.app_name) + " " + versionName);
 
     }
 }

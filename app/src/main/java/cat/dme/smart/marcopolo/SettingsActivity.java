@@ -16,30 +16,34 @@ import cat.dme.smart.marcopolo.list.TripArrayAdapter;
 import cat.dme.smart.marcopolo.model.Trip;
 
 /**
- * Created by str_dme on 25/07/14.
+ * Activity that shows a list of trips, to configure them and to select witch one is the active.
+ *
+ * Created by VIddA Software - DME Creaciones.
  */
 public class SettingsActivity extends BaseMenuActivity {
 
     ListView listView;
     TripDao tripDao;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         this.configureToolbar();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //Long currentTripId = (Long)this.getIntent().getSerializableExtra(this.getString(R.string.global_current_trip_id));
+        Long currentTripId = this.getMyApplication().getCurrentTripId();
+        tripDao = TripDaoImpl.getInstance();
 
         // Get ListView object from xml
         listView = (ListView) findViewById(R.id.list);
 
-        tripDao = new TripDaoImpl();
-
-        ArrayAdapter<Trip> adapter = new TripArrayAdapter(this, tripDao.getAll());
-
+        ArrayAdapter<Trip> adapter = new TripArrayAdapter(this, tripDao.getAll(), currentTripId);
         listView.setAdapter(adapter);
-
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -50,12 +54,14 @@ public class SettingsActivity extends BaseMenuActivity {
                 // ListView Clicked item value
                 Trip itemValue = (Trip) listView.getItemAtPosition(position);
                 // Show Alert
-                Snackbar.make(view, "Position :" + itemPosition + "  ListItem : " + itemValue, Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                //Snackbar.make(view, "Position :" + itemPosition + "  ListItem : " + itemValue, Snackbar.LENGTH_LONG).setAction("Action", null).show();
+
+                Intent intent = new Intent(view.getContext(),TripActivity.class);
+                intent.putExtra(view.getContext().getString(R.string.global_current_trip), itemValue);
+                startActivity(intent);
             }
 
         });
-
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

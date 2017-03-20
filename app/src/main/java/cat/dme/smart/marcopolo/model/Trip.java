@@ -1,14 +1,17 @@
 package cat.dme.smart.marcopolo.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import cat.dme.smart.marcopolo.contants.TripStatus;
 
 /**
- * Created by dmolina on 11/02/17.
+ * Trip model bean.
+ *
+ * Created by VIddA Software - DME Creaciones.
  */
+public class Trip implements Serializable {
 
-public class Trip {
     private Long _id;
     private String destination;
     private Date startDate;

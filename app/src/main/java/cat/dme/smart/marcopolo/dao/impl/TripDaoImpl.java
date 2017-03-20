@@ -13,27 +13,61 @@ import nl.qbusict.cupboard.CupboardFactory;
  * Created by dmolina on 11/02/17.
  */
 public class TripDaoImpl implements TripDao {
+
+    /**
+     * Default constructor. Singleton implementation.
+     */
+    private TripDaoImpl() {
+        super();
+    }
+
+    /**
+     * Singleton instance.
+     */
+    private static TripDao instance;
+
+    /**
+     * Singgleton implementation.
+     *
+     * @return an instance of {@link TripDaoImpl}.
+     */
+    public static TripDao getInstance() {
+        if(instance==null) {
+            instance = new TripDaoImpl();
+        }
+        return instance;
+    }
+
     @Override
     public List<Trip> getAll() {
         Trip trip = new Trip();
         trip.set_id(new Long(1));
-        trip.setDestination("Roma");
-        trip.setDescription("Escapada de fin de semana");
+        trip.setDestination("Delta de l'Ebre");
+        trip.setDescription("Escapada de fin de semana a ver aves");
         trip.setEndDate(new Date());
         trip.setStartDate(new Date());
-        trip.setStatus(TripStatus.LIVE);
+        trip.setStatus(TripStatus.FINISH);
 
         Trip trip2 = new Trip();
         trip2.set_id(new Long(2));
-        trip2.setDestination("Suiza");
-        trip2.setDescription("A pasar frío");
+        trip2.setDestination("Roma");
+        trip2.setDescription("Escapada de fin de semana");
         trip2.setEndDate(new Date());
         trip2.setStartDate(new Date());
         trip2.setStatus(TripStatus.LIVE);
 
+        Trip trip3 = new Trip();
+        trip3.set_id(new Long(3));
+        trip3.setDestination("Suiza");
+        trip3.setDescription("A pasar frío");
+        trip3.setEndDate(new Date());
+        trip3.setStartDate(new Date());
+        trip3.setStatus(TripStatus.COMING_SOON);
+
         List<Trip> trips = new ArrayList<>();
         trips.add(trip);
         trips.add(trip2);
+        trips.add(trip3);
 
 /*        // Get the cursor for this query
         Cursor bunnies = cupboard().withDatabase(db).query(Bunny.class).getCursor();
@@ -53,7 +87,36 @@ public class TripDaoImpl implements TripDao {
 
     @Override
     public Trip get(Long id) {
-        return CupboardFactory.cupboard().withDatabase(DbHelper.getDbHelper().getReadableDatabase()).get(Trip.class, id);
+        Trip trip = new Trip();
+        trip.set_id(new Long(1));
+        trip.setDestination("Delta de l'Ebre");
+        trip.setDescription("Escapada de fin de semana a ver aves");
+        trip.setEndDate(new Date());
+        trip.setStartDate(new Date());
+        trip.setStatus(TripStatus.FINISH);
+
+        Trip trip2 = new Trip();
+        trip2.set_id(new Long(2));
+        trip2.setDestination("Roma");
+        trip2.setDescription("Escapada de fin de semana");
+        trip2.setEndDate(new Date());
+        trip2.setStartDate(new Date());
+        trip2.setStatus(TripStatus.LIVE);
+
+        Trip trip3 = new Trip();
+        trip3.set_id(new Long(3));
+        trip3.setDestination("Suiza");
+        trip3.setDescription("A pasar frío");
+        trip3.setEndDate(new Date());
+        trip3.setStartDate(new Date());
+        trip3.setStatus(TripStatus.COMING_SOON);
+
+        List<Trip> trips = new ArrayList<>();
+        trips.add(trip);
+        trips.add(trip2);
+        trips.add(trip3);
+        //return CupboardFactory.cupboard().withDatabase(DbHelper.getDbHelper().getReadableDatabase()).get(Trip.class, id);
+        return trips.get(id.intValue()-1);
     }
 // Get the first matching Bunny with name Max
  //       Bunny bunny = CupboardFactory.cupboard().withDatabase(db).query(Bunny.class).withSelection( "name = ?", "Max").get();

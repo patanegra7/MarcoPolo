@@ -1,7 +1,11 @@
 <resources>
     <string name="app_name">Marco Polo</string>
-    <string name="welcome">Wellcome travellers!</string>
-    <string name="action_settings">Settings</string>
+    <!--string name="welcome">Welcome travellers!</string>
+    <string name="action_settings">Settings</string -->
+
+    <string name="preference.file.key">cat.dme.smart.marcopolo.PREFERENCE_FILE</string>
+    <string name="global.current.trip">global.current.trip</string>
+    <string name="global.current.trip.id">global.current.trip.id</string>
 
     <string name="menu.daily">Daily</string>
     <string name="menu.summary">Summary</string>
@@ -9,6 +13,9 @@
     <string name="menu.export">Export</string>
     <string name="menu.about">About</string>
     <string name="menu.exit">Exit</string>
+
+    <string name="main.not.destination">Destination not selected</string>
+
 
     <string name="daily.date">Data</string>
     <string name="daily.type">Tipus</string>
@@ -20,4 +27,6 @@
 
     <string name="credits.text1">VIddA Software</string>
     <string name="credits.text2">D.M.E. Creaciones</string>
+
+
 </resources>

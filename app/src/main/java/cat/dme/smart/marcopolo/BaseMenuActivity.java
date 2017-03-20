@@ -7,11 +7,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-/**
- * Created by dmolina on 10/02/17.
- */
+import cat.dme.smart.marcopolo.model.Trip;
+import cat.dme.smart.marcopolo.model.global.MarcoPoloApplication;
 
+/**
+ * Base activity with common main menu.
+ *
+ * Created by VIddA Software - DME Creaciones.
+ */
 public abstract class BaseMenuActivity extends AppCompatActivity {
+
+    protected MarcoPoloApplication getMyApplication() {
+        return (MarcoPoloApplication)this.getApplication();
+    }
 
     protected void configureToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -38,6 +46,7 @@ public abstract class BaseMenuActivity extends AppCompatActivity {
                 return(true);
             case R.id.settings:
                 intent = new Intent(this, SettingsActivity.class);
+                //intent.putExtra(this.getString(R.string.global_current_trip_id), this.getMyApplication().getCurrentTripId());
                 startActivity(intent);
                 return(true);
             case R.id.export:
