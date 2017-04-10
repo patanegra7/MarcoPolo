@@ -1,16 +1,14 @@
-package cat.dme.smart.marcopolo;
+package cat.dme.smart.marcopolo.activities;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import cat.dme.smart.marcopolo.dao.BaseDao;
+import cat.dme.smart.marcopolo.R;
 import cat.dme.smart.marcopolo.dao.TripDao;
 import cat.dme.smart.marcopolo.dao.impl.DbHelper;
 import cat.dme.smart.marcopolo.dao.impl.TripDaoImpl;
 import cat.dme.smart.marcopolo.model.Trip;
-import cat.dme.smart.marcopolo.model.global.MarcoPoloApplication;
 
 /**
  * Activity that shows main view: It will be a initial dashboard of the active trip.

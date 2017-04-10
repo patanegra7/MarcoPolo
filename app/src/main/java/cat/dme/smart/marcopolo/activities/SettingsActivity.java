@@ -1,18 +1,17 @@
-package cat.dme.smart.marcopolo;
+package cat.dme.smart.marcopolo.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
+import cat.dme.smart.marcopolo.R;
 import cat.dme.smart.marcopolo.dao.TripDao;
 import cat.dme.smart.marcopolo.dao.impl.TripDaoImpl;
-import cat.dme.smart.marcopolo.list.TripArrayAdapter;
+import cat.dme.smart.marcopolo.adapters.TripArrayAdapter;
 import cat.dme.smart.marcopolo.model.Trip;
 
 /**

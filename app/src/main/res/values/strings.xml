@@ -16,7 +16,6 @@
 
     <string name="main.not.destination">Destination not selected</string>
 
-
     <string name="daily.date">Data</string>
     <string name="daily.type">Tipus</string>
     <string name="daily.description">Descripció</string>
@@ -27,6 +26,11 @@
 
     <string name="credits.text1">VIddA Software</string>
     <string name="credits.text2">D.M.E. Creaciones</string>
+
+    <string name="trip.concept">Concepts</string>
+    <string name="trip.currency">Currencies</string>
+    <string name="trip.payer">Payers</string>
+    <string name="trip.payment.method">Payment Methods</string>
 
 
 </resources>

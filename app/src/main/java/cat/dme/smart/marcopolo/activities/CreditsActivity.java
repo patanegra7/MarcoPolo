@@ -1,10 +1,10 @@
-package cat.dme.smart.marcopolo;
+package cat.dme.smart.marcopolo.activities;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.widget.ListView;
 import android.widget.TextView;
+
+import cat.dme.smart.marcopolo.BuildConfig;
+import cat.dme.smart.marcopolo.R;
 
 /**
  * Activity that shows credits.

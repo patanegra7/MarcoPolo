@@ -1,13 +1,12 @@
-package cat.dme.smart.marcopolo;
+package cat.dme.smart.marcopolo.activities;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import cat.dme.smart.marcopolo.model.Trip;
+import cat.dme.smart.marcopolo.R;
 import cat.dme.smart.marcopolo.model.global.MarcoPoloApplication;
 
 /**
@@ -23,13 +22,13 @@ public abstract class BaseMenuActivity extends AppCompatActivity {
 
     protected void configureToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        this.setSupportActionBar(toolbar);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        this.getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
@@ -45,17 +44,14 @@ public abstract class BaseMenuActivity extends AppCompatActivity {
                 startActivity(intent);
                 return(true);
             case R.id.settings:
-                intent = new Intent(this, SettingsActivity.class);
-                //intent.putExtra(this.getString(R.string.global_current_trip_id), this.getMyApplication().getCurrentTripId());
-                startActivity(intent);
+                this.startActivity(new Intent(this, SettingsActivity.class));
                 return(true);
             case R.id.export:
                 intent = new Intent(this, ExportActivity.class);
                 startActivity(intent);
                 return(true);
             case R.id.about:
-                intent = new Intent(this, CreditsActivity.class);
-                startActivity(intent);
+                this.startActivity(new Intent(this, CreditsActivity.class));
                 return(true);
             case R.id.exit:
                 intent = new Intent(Intent.ACTION_MAIN);
