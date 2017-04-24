@@ -1,5 +1,7 @@
 package cat.dme.smart.marcopolo.dao.impl;
 
+import android.database.Cursor;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -8,9 +10,12 @@ import cat.dme.smart.marcopolo.contants.TripStatus;
 import cat.dme.smart.marcopolo.dao.TripDao;
 import cat.dme.smart.marcopolo.model.Trip;
 import nl.qbusict.cupboard.CupboardFactory;
+import nl.qbusict.cupboard.QueryResultIterable;
 
 /**
- * Created by dmolina on 11/02/17.
+ * Trip DAO implementation.
+ *
+ * Created by VIddA Software - DME Creaciones.
  */
 public class TripDaoImpl implements TripDao {
 
@@ -27,7 +32,7 @@ public class TripDaoImpl implements TripDao {
     private static TripDao instance;
 
     /**
-     * Singgleton implementation.
+     * Singleton implementation.
      *
      * @return an instance of {@link TripDaoImpl}.
      */
@@ -40,6 +45,7 @@ public class TripDaoImpl implements TripDao {
 
     @Override
     public List<Trip> getAll() {
+        /*
         Trip trip = new Trip();
         trip.set_id(new Long(1));
         trip.setDestination("Delta de l'Ebre");
@@ -68,25 +74,26 @@ public class TripDaoImpl implements TripDao {
         trips.add(trip);
         trips.add(trip2);
         trips.add(trip3);
-
-/*        // Get the cursor for this query
-        Cursor bunnies = cupboard().withDatabase(db).query(Bunny.class).getCursor();
+*/
+        // Get the cursor for this query
+        Cursor tripsCursor = CupboardFactory.cupboard().withDatabase(DbHelper.getDbHelper().getReadableDatabase()).query(Trip.class).getCursor();
+        List<Trip> trips = new ArrayList<>();
         try {
-            // Iterate Bunnys
-            QueryResultIterable<Bunny> itr = cupboard().withCursor(bunnies).iterate(Bunny.class);
-            for (Bunny bunny : itr) {
-                // do something with bunny
+            // Iterate trips
+            QueryResultIterable<Trip> itr = CupboardFactory.cupboard().withCursor(tripsCursor).iterate(Trip.class);
+            for (Trip trip : itr) {
+                trips.add(trip);
             }
         } finally {
             // close the cursor
-            bunnies.close();
-        }*/
-
+            tripsCursor.close();
+        }
         return trips;
     }
 
     @Override
     public Trip get(Long id) {
+        /*
         Trip trip = new Trip();
         trip.set_id(new Long(1));
         trip.setDestination("Delta de l'Ebre");
@@ -115,8 +122,9 @@ public class TripDaoImpl implements TripDao {
         trips.add(trip);
         trips.add(trip2);
         trips.add(trip3);
-        //return CupboardFactory.cupboard().withDatabase(DbHelper.getDbHelper().getReadableDatabase()).get(Trip.class, id);
-        return trips.get(id.intValue()-1);
+        */
+        return CupboardFactory.cupboard().withDatabase(DbHelper.getDbHelper().getReadableDatabase()).get(Trip.class, id);
+        //return trips.get(id.intValue()-1);
     }
 // Get the first matching Bunny with name Max
  //       Bunny bunny = CupboardFactory.cupboard().withDatabase(db).query(Bunny.class).withSelection( "name = ?", "Max").get();

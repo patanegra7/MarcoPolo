@@ -1,6 +1,8 @@
 package cat.dme.smart.marcopolo.activities;
 
 import android.app.Fragment;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -27,18 +29,10 @@ public class TripActivity extends BaseMenuActivity {
         setContentView(R.layout.activity_trip);
         this.configureToolbar();
 
-        Trip currentTrip = (Trip) this.getIntent().getSerializableExtra(this.getString(R.string.global_current_trip));
+        // Retrieves current trip
+        Long currentTripId = this.getIntent().getLongExtra(this.getString(R.string.global_current_trip_id), 0);
 
-
-        //if(currentTrip!=null) { // Lo seleccionamos -- Igual no es la manera
-        //    this.getMyApplication().setCurrentTripId(currentTrip.get_id());
-        //}
-
-        //Load currentTripId
-        Long selectedTripId = this.getMyApplication().getCurrentTripId();
-
-        this.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_trip, TripFragment.newInstance(currentTrip, selectedTripId)).commit();
-
+        //Creates tabs titles
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_currency));
                 //Text(this.getString(R.string.trip_currency)));
@@ -50,9 +44,9 @@ public class TripActivity extends BaseMenuActivity {
                 //Text(this.getString(R.string.trip_payment_method)));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
+        //Creates tabs content
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        final TripPagerAdapter adapter = new TripPagerAdapter
-                (getSupportFragmentManager(), tabLayout.getTabCount());
+        final TripPagerAdapter adapter = new TripPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount(), currentTripId);
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -77,45 +71,26 @@ public class TripActivity extends BaseMenuActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        // Retrieves current trip
+        Long currentTripId = this.getIntent().getLongExtra(this.getString(R.string.global_current_trip_id), 0);
+        Trip currentTrip = TripDaoImpl.getInstance().get(currentTripId);
 
-
-/*
-        Trip currentTrip = (Trip) this.getIntent().getSerializableExtra(this.getString(R.string.global_current_trip));
-
-
-        //if(currentTrip!=null) { // Lo seleccionamos -- Igual no es la manera
-        //    this.getMyApplication().setCurrentTripId(currentTrip.get_id());
-        //}
-
-        //Load currentTripId
+        //Loads  selected TripId
         Long selectedTripId = this.getMyApplication().getCurrentTripId();
 
+        //Changes general trip data fragment.
         this.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_trip, TripFragment.newInstance(currentTrip, selectedTripId)).commit();
-*/
-        /*
-        String destination;
-        String description;
-        if(currentTrip!=null) {
-            //Trip currentTrip = TripDaoImpl.getInstance().get(currentTripId);
-            destination = currentTrip.getDestination();
-            description = currentTrip.getDescription();
-
-            TextView tvCurrentTripDestination = (TextView) findViewById(R.id.current_trip_destination);
-            tvCurrentTripDestination.setText(destination);
-
-            TextView tvCurrentTripDescription = (TextView) findViewById(R.id.current_trip_description);
-            tvCurrentTripDescription.setText(description);
-
-            CheckBox tvSelected = (CheckBox) findViewById(R.id.current_trip_selected);
-            if(selectedTripId!=null && selectedTripId.equals(currentTrip.get_id())) {
-                tvSelected.setChecked(true);
-            } else {
-                tvSelected.setChecked(false);
-            }
-
-        } */
     }
 
+    public static Intent runActivity(Context context) {
+        return new Intent(context, TripActivity.class);
+    }
+
+    public static Intent runActivity(Context context, Long tripId) {
+        Intent intent = new Intent(context, TripActivity.class);
+        intent.putExtra(context.getString(R.string.global_current_trip_id), tripId);
+        return intent;
+    }
 
 }
 

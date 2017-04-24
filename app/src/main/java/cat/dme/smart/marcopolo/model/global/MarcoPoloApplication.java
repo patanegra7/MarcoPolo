@@ -37,6 +37,10 @@ public class MarcoPoloApplication extends Application {
         super.onTerminate();
     }
 
+    /**
+     *
+     * @return
+     */
     public Long getCurrentTripId() {
         if(this.currentTripId==null) {
             SharedPreferences sharedPref = this.getApplicationContext().getSharedPreferences(this.getString(R.string.preference_file_key), Context.MODE_PRIVATE);
@@ -45,11 +49,26 @@ public class MarcoPoloApplication extends Application {
         return this.currentTripId;
     }
 
+    /**
+     *
+     * @param currentTripId
+     */
     public void setCurrentTripId(Long currentTripId) {
         this.currentTripId = currentTripId;
         SharedPreferences sharedPref = this.getApplicationContext().getSharedPreferences(this.getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putLong(this.getString(R.string.global_current_trip_id), currentTripId);
+        editor.commit();
+    }
+
+    /**
+     *
+     */
+    public void removeCurrentTripId() {
+        this.currentTripId = null;
+        SharedPreferences sharedPref = this.getApplicationContext().getSharedPreferences(this.getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.remove(this.getString(R.string.global_current_trip_id));
         editor.commit();
     }
 }

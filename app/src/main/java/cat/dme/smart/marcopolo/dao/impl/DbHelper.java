@@ -4,6 +4,10 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import cat.dme.smart.marcopolo.model.Concept;
+import cat.dme.smart.marcopolo.model.Currency;
+import cat.dme.smart.marcopolo.model.Payer;
+import cat.dme.smart.marcopolo.model.PaymentMethod;
 import cat.dme.smart.marcopolo.model.Trip;
 
 import static nl.qbusict.cupboard.CupboardFactory.cupboard;
@@ -15,7 +19,7 @@ import static nl.qbusict.cupboard.CupboardFactory.cupboard;
 public class DbHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "marcopolo.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private static DbHelper dbHelper;
 
     public static void initDbHelper(Context context) {
@@ -34,6 +38,10 @@ public class DbHelper extends SQLiteOpenHelper {
     static {
         // register our models
         cupboard().register(Trip.class);
+        cupboard().register(Currency.class);
+        cupboard().register(Payer.class);
+        cupboard().register(PaymentMethod.class);
+        cupboard().register(Concept.class);
     }
 
     @Override

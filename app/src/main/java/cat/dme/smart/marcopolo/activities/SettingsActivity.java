@@ -1,5 +1,6 @@
 package cat.dme.smart.marcopolo.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -21,9 +22,6 @@ import cat.dme.smart.marcopolo.model.Trip;
  */
 public class SettingsActivity extends BaseMenuActivity {
 
-    ListView listView;
-    TripDao tripDao;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,12 +32,11 @@ public class SettingsActivity extends BaseMenuActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        //Long currentTripId = (Long)this.getIntent().getSerializableExtra(this.getString(R.string.global_current_trip_id));
         Long currentTripId = this.getMyApplication().getCurrentTripId();
-        tripDao = TripDaoImpl.getInstance();
+        TripDao tripDao = TripDaoImpl.getInstance();
 
         // Get ListView object from xml
-        listView = (ListView) findViewById(R.id.list);
+        final ListView listView = (ListView) findViewById(R.id.list);
 
         ArrayAdapter<Trip> adapter = new TripArrayAdapter(this, tripDao.getAll(), currentTripId);
         listView.setAdapter(adapter);
@@ -47,28 +44,22 @@ public class SettingsActivity extends BaseMenuActivity {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                // ListView Clicked item index
-                int itemPosition = position;
-                // ListView Clicked item value
                 Trip itemValue = (Trip) listView.getItemAtPosition(position);
-                // Show Alert
-                //Snackbar.make(view, "Position :" + itemPosition + "  ListItem : " + itemValue, Snackbar.LENGTH_LONG).setAction("Action", null).show();
-
-                Intent intent = new Intent(view.getContext(),TripActivity.class);
-                intent.putExtra(view.getContext().getString(R.string.global_current_trip), itemValue);
-                startActivity(intent);
+                startActivity(TripActivity.runActivity(view.getContext(), itemValue.get_id()));
             }
 
         });
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_add_trip);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), TripActivity.class);
-                startActivity(intent);
+                startActivity(EditTripActivity.runActivity(view.getContext()));
             }
         });
+    }
+
+    public static Intent runActivity(Context context) {
+        return new Intent(context, SettingsActivity.class);
     }
 }

@@ -44,11 +44,11 @@ public class TripArrayAdapter extends ArrayAdapter<Trip> {
 
         TextView tvFisrtLine = (TextView) convertView.findViewById(R.id.firstLine);
         TextView tvSecondline = (TextView) convertView.findViewById(R.id.secondLine);
-        ImageView imageView = (ImageView) convertView.findViewById(R.id.icon);
+        //ImageView imageView = (ImageView) convertView.findViewById(R.id.icon);
 
         tvFisrtLine.setText(trip.getDestination());
         tvSecondline.setText(trip.getDescription());
-        imageView.setImageResource(android.R.drawable.ic_menu_mapmode);
+        //imageView.setImageResource(android.R.drawable.ic_menu_mapmode);
         return convertView;
     }
 }

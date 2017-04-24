@@ -3,13 +3,14 @@ package cat.dme.smart.marcopolo.dao;
 import java.util.List;
 
 /**
- * Created by dmolina on 12/02/17.
+ * Generic DAO interface for CRUD support.
+ *
+ * Created by VIddA Software - DME Creaciones.
  */
-
 public interface BaseDao<T> {
     List<T> getAll();
     T get(Long id);
-    Long save(T trip);
-    void update(T trip);
+    Long save(T entity);
+    void update(T entity);
     void delete(Long id);
 }

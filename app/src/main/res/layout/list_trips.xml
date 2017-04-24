@@ -5,13 +5,13 @@
     android:layout_height="?android:attr/listPreferredItemHeight"
     android:padding="6dip" >
 
-    <ImageView
+    <!--ImageView
         android:id="@+id/icon"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:layout_alignParentBottom="true"
         android:layout_alignParentTop="true"
-        android:src="@mipmap/ic_launcher" />
+        android:src="@mipmap/ic_launcher" / -->
     <!--android:layout_marginRight="6dip" -->
 
     <TextView
@@ -20,9 +20,10 @@
         android:layout_height="26dip"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_toRightOf="@id/icon"
         android:ellipsize="marquee"
         android:textSize="12sp" />
+
+    <!-- android:layout_toRightOf="@id/icon" -->
 
     <TextView
         android:id="@+id/firstLine"
@@ -33,9 +34,10 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignWithParentIfMissing="true"
-        android:layout_toRightOf="@id/icon"
         android:gravity="center_vertical"
         android:textSize="16sp" />
+
+    <!-- android:layout_toRightOf="@id/icon" -->
 
     <!--CheckBox
         android:id="@+id/selectedTrip"

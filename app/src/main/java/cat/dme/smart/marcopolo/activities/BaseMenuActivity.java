@@ -44,7 +44,7 @@ public abstract class BaseMenuActivity extends AppCompatActivity {
                 startActivity(intent);
                 return(true);
             case R.id.settings:
-                this.startActivity(new Intent(this, SettingsActivity.class));
+                this.startActivity(SettingsActivity.runActivity(this));
                 return(true);
             case R.id.export:
                 intent = new Intent(this, ExportActivity.class);

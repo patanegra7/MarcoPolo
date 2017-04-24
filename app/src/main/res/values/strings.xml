@@ -1,12 +1,16 @@
 <resources>
-    <string name="app_name">Marco Polo</string>
-    <!--string name="welcome">Welcome travellers!</string>
-    <string name="action_settings">Settings</string -->
 
+    <!-- Identifiers -->
     <string name="preference.file.key">cat.dme.smart.marcopolo.PREFERENCE_FILE</string>
     <string name="global.current.trip">global.current.trip</string>
     <string name="global.current.trip.id">global.current.trip.id</string>
+    <string name="global.current.concept">global.current.concept</string>
+    <string name="global.current.currency">global.current.currency</string>
+    <string name="global.current.payer">global.current.payer</string>
+    <string name="global.current.payment.method">global.current.payment.method</string>
 
+    <!-- i18n -->
+    <string name="app_name">Marco Polo</string>
     <string name="menu.daily">Daily</string>
     <string name="menu.summary">Summary</string>
     <string name="menu.settings">Settings</string>
@@ -14,7 +18,13 @@
     <string name="menu.about">About</string>
     <string name="menu.exit">Exit</string>
 
+    <string name="button.cancel">Cancel</string>
+    <string name="button.delete">Delete</string>
+    <string name="button.ok">Ok</string>
+    <string name="button.save">Save</string>
+
     <string name="main.not.destination">Destination not selected</string>
+    <string name="main.not.destination.dialog">There are no trips. Do you want create one?</string>
 
     <string name="daily.date">Data</string>
     <string name="daily.type">Tipus</string>
@@ -22,15 +32,45 @@
     <string name="daily.amount">Import</string>
     <string name="daily.currency">Moneda</string>
     <string name="daily.payer">Pagador</string>
-    <string name="daily.payMode">Tipus de pagament</string>
+    <string name="daily.payment.method">Tipus de pagament</string>
 
     <string name="credits.text1">VIddA Software</string>
     <string name="credits.text2">D.M.E. Creaciones</string>
 
+    <string name="trip.from">From</string>
+    <string name="trip.to">to</string>
     <string name="trip.concept">Concepts</string>
     <string name="trip.currency">Currencies</string>
     <string name="trip.payer">Payers</string>
     <string name="trip.payment.method">Payment Methods</string>
 
+    <string name="edit.trip.title">Trip details</string>
+    <string name="edit.trip.destination">destination</string>
+    <string name="edit.trip.start.date">from date</string>
+    <string name="edit.trip.end.date">to date</string>
+    <string name="edit.trip.description">description</string>
+    <string name="edit.trip.status">Status</string>
+
+    <string name="edit.concept.title">Concept Details</string>
+    <string name="edit.concept.name">concept name</string>
+    <string name="edit.concept.validation.error">Incorrect concept name!</string>
+    <string name="edit.concept.delete.confirm">Are you sure to delete this concept?</string>
+
+    <string name="edit.currency.title">Currency Details</string>
+    <string name="edit.currency.name">currency name</string>
+    <string name="edit.currency.code">currency code</string>
+    <string name="edit.currency.symbol">currency symbol</string>
+    <string name="edit.currency.validation.error">Incorrect currency name!</string>
+    <string name="edit.currency.delete.confirm">Are you sure to delete this currency?</string>
+
+    <string name="edit.payer.title">Payer Details</string>
+    <string name="edit.payer.name">payer name</string>
+    <string name="edit.payer.validation.error">Incorrect payer name!</string>
+    <string name="edit.payer.delete.confirm">Are you sure to delete this payer?</string>
+
+    <string name="edit.payment.method.title">Payment Method Details</string>
+    <string name="edit.payment.method.name">payment method name</string>
+    <string name="edit.payment.method.validation.error">Incorrect payment method name!</string>
+    <string name="edit.payment.method.delete.confirm">Are you sure to delete this payment method?</string>
 
 </resources>

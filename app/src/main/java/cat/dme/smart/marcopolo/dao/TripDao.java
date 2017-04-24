@@ -5,7 +5,9 @@ import java.util.List;
 import cat.dme.smart.marcopolo.model.Trip;
 
 /**
- * Created by dmolina on 11/02/17.
+ * Trip DAO interface.
+ *
+ * Created by VIddA Software - DME Creaciones.
  */
 public interface TripDao extends BaseDao <Trip> {
 

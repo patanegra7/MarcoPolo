@@ -11,7 +11,13 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import cat.dme.smart.marcopolo.R;
+import cat.dme.smart.marcopolo.activities.EditTripActivity;
+import cat.dme.smart.marcopolo.activities.TripActivity;
+import cat.dme.smart.marcopolo.contants.Constants;
 import cat.dme.smart.marcopolo.model.Trip;
 import cat.dme.smart.marcopolo.model.global.MarcoPoloApplication;
 
@@ -26,7 +32,7 @@ public class TripFragment extends Fragment implements View.OnClickListener {
     private Trip currentTrip;
     private Long selectedTripId;
 
-    //private OnFragmentInteractionListener mListener;
+    //private OnTripFragmentListener mListener;
 
     /**
      * Default constructor
@@ -67,21 +73,41 @@ public class TripFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_trip, container, false);
+        return view;
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
         String destination;
         String description;
+        Date startDate;
+        Date endDate;
         if(currentTrip!=null) {
-            //Trip currentTrip = TripDaoImpl.getInstance().get(currentTripId);
             destination = currentTrip.getDestination();
             description = currentTrip.getDescription();
+            startDate = currentTrip.getStartDate();
+            endDate = currentTrip.getEndDate();
 
-            TextView tvCurrentTripDestination = (TextView) view.findViewById(R.id.current_trip_destination);
+            TextView tvCurrentTripDestination = (TextView) this.getView().findViewById(R.id.current_trip_destination);
             tvCurrentTripDestination.setText(destination);
 
-            TextView tvCurrentTripDescription = (TextView) view.findViewById(R.id.current_trip_description);
+            TextView tvCurrentTripDescription = (TextView) this.getView().findViewById(R.id.current_trip_description);
             tvCurrentTripDescription.setText(description);
 
-            CheckBox tvSelected = (CheckBox) view.findViewById(R.id.current_trip_selected);
+            if(startDate!=null && endDate!=null) {
+                TextView tvCurrentTripDate = (TextView) this.getView().findViewById(R.id.current_trip_date);
+                SimpleDateFormat sdf = new SimpleDateFormat(Constants.DATE_MASK);
+
+                StringBuilder currentTripDate = new StringBuilder(this.getContext().getString(R.string.trip_from))
+                        .append(Constants.SPACE).append(sdf.format(startDate)).append(Constants.SPACE)
+                        .append(this.getContext().getString(R.string.trip_to)).append(Constants.SPACE)
+                        .append(sdf.format(endDate));
+
+                tvCurrentTripDate.setText(currentTripDate.toString());
+            }
+
+            CheckBox tvSelected = (CheckBox) this.getView().findViewById(R.id.current_trip_selected);
             if(selectedTripId!=null && selectedTripId.equals(currentTrip.get_id())) {
                 tvSelected.setChecked(true);
             } else {
@@ -89,25 +115,15 @@ public class TripFragment extends Fragment implements View.OnClickListener {
             }
             tvSelected.setOnClickListener(this);
 
-            ImageView editTripButton = (ImageView) view.findViewById(R.id.edit_button_icon);
+            ImageView editTripButton = (ImageView) this.getView().findViewById(R.id.edit_button_icon);
             editTripButton.setOnClickListener(this);
         }
-
-
-        return view;
     }
-
-    // TODO: Rename method, update argument and hook method into UI event
-/*    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }*/
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-/*      if (context instanceof OnFragmentInteractionListener) {
+  /*      if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
@@ -145,7 +161,7 @@ public class TripFragment extends Fragment implements View.OnClickListener {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-/*    public interface OnFragmentInteractionListener {
+ /*   public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }*/
@@ -164,6 +180,7 @@ public class TripFragment extends Fragment implements View.OnClickListener {
 
     public void onClickEditTrip(View view) {
 
-        Snackbar.make(view, "Edit Trip", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+        //Snackbar.make(view, "Edit Trip", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+        startActivity(EditTripActivity.runActivity(view.getContext(), this.currentTrip));
     }
 }

@@ -15,11 +15,14 @@ import cat.dme.smart.marcopolo.fragments.trip.PaymentMethodFragment;
  */
 
 public class TripPagerAdapter extends FragmentPagerAdapter {
-    int mNumOfTabs;
+    private int mNumOfTabs;
+    private Long tripId;
 
-    public TripPagerAdapter(FragmentManager fm, int NumOfTabs) {
+
+    public TripPagerAdapter(FragmentManager fm, int NumOfTabs, Long tripId) {
         super(fm);
         this.mNumOfTabs = NumOfTabs;
+        this.tripId = tripId;
     }
 
     @Override
@@ -27,16 +30,16 @@ public class TripPagerAdapter extends FragmentPagerAdapter {
 
         switch (position) {
             case 0:
-                CurrencyFragment tab1 = new CurrencyFragment();
+                CurrencyFragment tab1 = CurrencyFragment.newInstance(tripId);
                 return tab1;
             case 1:
-                PayerFragment tab2 = new PayerFragment();
+                PayerFragment tab2 = PayerFragment.newInstance(tripId);
                 return tab2;
             case 2:
-                ConceptFragment tab3 = new ConceptFragment();
+                ConceptFragment tab3 = ConceptFragment.newInstance(tripId);
                 return tab3;
             case 3:
-                PaymentMethodFragment tab4 = new PaymentMethodFragment();
+                PaymentMethodFragment tab4 = PaymentMethodFragment.newInstance(tripId);
                 return tab4;
             default:
                 return null;

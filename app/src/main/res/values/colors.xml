@@ -5,6 +5,6 @@
     <!--color name="colorPrimary">#3F51B5</color-->
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#5F021F</color>
-    <color name="titleTextColor">#E1B378</color>
+    <!--color name="titleTextColor">#E1B378</color-->
     <!--color name="colorAccent">#FF4081</color-->
 </resources>
