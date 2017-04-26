@@ -50,6 +50,7 @@
     <string name="edit.trip.end.date">to date</string>
     <string name="edit.trip.description">description</string>
     <string name="edit.trip.status">Status</string>
+    <string name="edit.trip.delete.confirm">Are you sure to delete this trip and all its related information?</string>
 
     <string name="edit.concept.title">Concept Details</string>
     <string name="edit.concept.name">concept name</string>

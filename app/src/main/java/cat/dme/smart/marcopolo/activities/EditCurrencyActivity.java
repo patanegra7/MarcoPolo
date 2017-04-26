@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import cat.dme.smart.marcopolo.R;
+import cat.dme.smart.marcopolo.business.impl.TripBOImpl;
 import cat.dme.smart.marcopolo.dao.impl.CurrencyDaoImpl;
 import cat.dme.smart.marcopolo.fragments.trip.EditCurrencyFragment;
 import cat.dme.smart.marcopolo.fragments.trip.dialog.DeleteCurrencyDialogFragment;
@@ -84,7 +85,7 @@ public class EditCurrencyActivity extends BaseMenuActivity implements EditCurren
 
     @Override
     public void onDeleteConfirmClick(DialogFragment dialog, Long currentCurrencyId) {
-        CurrencyDaoImpl.getInstance().delete(currentCurrencyId);
+        TripBOImpl.getInstance(null).deleteCurrency(currentCurrencyId);
         finish();
     }
 

@@ -228,8 +228,7 @@ public class EditTripFragment extends Fragment implements View.OnClickListener {
     }
 
     public void onClickDeleteTrip(View view) {
-        mListener.onEditFragmentDelete(this.currentTrip.get_id()); //TODO: Falta dialogo de confirmacion
-        Snackbar.make(view, "Delete trip", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+        mListener.onEditFragmentDelete(this.currentTrip.get_id());
     }
 
     public void onClickCancelTrip(View view) {

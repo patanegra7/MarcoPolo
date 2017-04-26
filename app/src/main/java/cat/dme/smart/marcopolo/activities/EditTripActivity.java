@@ -1,5 +1,6 @@
 package cat.dme.smart.marcopolo.activities;
 
+import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,9 +10,12 @@ import android.support.v4.view.ViewPager;
 import cat.dme.smart.marcopolo.R;
 import cat.dme.smart.marcopolo.adapters.TripPagerAdapter;
 import cat.dme.smart.marcopolo.business.impl.TripBOImpl;
+import cat.dme.smart.marcopolo.dao.impl.PayerDaoImpl;
 import cat.dme.smart.marcopolo.dao.impl.TripDaoImpl;
 import cat.dme.smart.marcopolo.fragments.trip.EditTripFragment;
 import cat.dme.smart.marcopolo.fragments.trip.TripFragment;
+import cat.dme.smart.marcopolo.fragments.trip.dialog.DeletePayerDialogFragment;
+import cat.dme.smart.marcopolo.fragments.trip.dialog.DeleteTripDialogFragment;
 import cat.dme.smart.marcopolo.model.Trip;
 
 /**
@@ -19,7 +23,8 @@ import cat.dme.smart.marcopolo.model.Trip;
  *
  * Created by VIddA Software - DME Creaciones.
  */
-public class EditTripActivity extends BaseMenuActivity implements EditTripFragment.OnEditTripFragmentListener {
+public class EditTripActivity extends BaseMenuActivity implements EditTripFragment.OnEditTripFragmentListener,
+                                                                    DeleteTripDialogFragment.DeleteTripDialogListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +38,7 @@ public class EditTripActivity extends BaseMenuActivity implements EditTripFragme
         //Loads  selected TripId
         Long selectedTripId = this.getMyApplication().getCurrentTripId();
 
-        //Changues edit trip data fragment.
+        //Changes edit trip data fragment.
         this.getSupportFragmentManager().beginTransaction().replace(R.id.edit_fragment_trip, EditTripFragment.newInstance(currentTrip, selectedTripId)).commit();
     }
 
@@ -74,6 +79,12 @@ public class EditTripActivity extends BaseMenuActivity implements EditTripFragme
 
     @Override
     public void onEditFragmentDelete(Long tripId) {
+        DialogFragment dialog = DeleteTripDialogFragment.newInstance(tripId);
+        dialog.show(this.getFragmentManager(), getString(R.string.edit_trip_delete_confirm));
+    }
+
+    @Override
+    public void onDeleteConfirmClick(DialogFragment dialog, Long tripId) {
         TripBOImpl.getInstance(this).deleteTrip(tripId);
         finish();
         this.startActivity(SettingsActivity.runActivity(this));

@@ -48,7 +48,9 @@ public class TripBOImpl implements TripBO {
         if(instance==null) {
             instance = new TripBOImpl();
         }
-        ((TripBOImpl)instance).aContext = context;
+        if(context!=null) {
+            ((TripBOImpl) instance).aContext = context;
+        }
         return instance;
     }
 
@@ -110,5 +112,25 @@ public class TripBOImpl implements TripBO {
         PaymentMethodDaoImpl.getInstance().deleteByTrip(tripId);
         //Trip
         TripDaoImpl.getInstance().delete(tripId);
+    }
+
+    @Override
+    public void deleteConcept(Long conceptId) {
+        ConceptDaoImpl.getInstance().delete(conceptId);
+    }
+
+    @Override
+    public void deleteCurrency(Long currecyId) {
+        CurrencyDaoImpl.getInstance().delete(currecyId);
+    }
+
+    @Override
+    public void deletePayer(Long payerId) {
+        PayerDaoImpl.getInstance().delete(payerId);
+    }
+
+    @Override
+    public void deletePaymentMethod(Long paymentMethodId) {
+        PaymentMethodDaoImpl.getInstance().delete(paymentMethodId);
     }
 }

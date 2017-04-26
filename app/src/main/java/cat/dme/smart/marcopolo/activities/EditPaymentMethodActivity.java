@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import cat.dme.smart.marcopolo.R;
+import cat.dme.smart.marcopolo.business.impl.TripBOImpl;
 import cat.dme.smart.marcopolo.dao.impl.PaymentMethodDaoImpl;
 import cat.dme.smart.marcopolo.fragments.trip.EditPaymentMethodFragment;
 import cat.dme.smart.marcopolo.fragments.trip.dialog.DeletePaymentMethodDialogFragment;
@@ -84,7 +85,7 @@ public class EditPaymentMethodActivity extends BaseMenuActivity implements EditP
 
     @Override
     public void onDeleteConfirmClick(DialogFragment dialog, Long currentPaymentMethodId) {
-        PaymentMethodDaoImpl.getInstance().delete(currentPaymentMethodId);
+        TripBOImpl.getInstance(null).deletePaymentMethod(currentPaymentMethodId);
         finish();
     }
 

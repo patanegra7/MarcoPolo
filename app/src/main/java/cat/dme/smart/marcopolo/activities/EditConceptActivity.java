@@ -86,7 +86,7 @@ public class EditConceptActivity extends BaseMenuActivity implements EditConcept
 
     @Override
     public void onDeleteConfirmClick(DialogFragment dialog, Long currentConceptId) {
-        ConceptDaoImpl.getInstance().delete(currentConceptId);
+        TripBOImpl.getInstance(null).deleteConcept(currentConceptId);
         finish();
     }
 

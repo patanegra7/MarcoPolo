@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import cat.dme.smart.marcopolo.R;
+import cat.dme.smart.marcopolo.business.impl.TripBOImpl;
 import cat.dme.smart.marcopolo.dao.impl.PayerDaoImpl;
 import cat.dme.smart.marcopolo.fragments.trip.EditPayerFragment;
 import cat.dme.smart.marcopolo.fragments.trip.dialog.DeletePayerDialogFragment;
@@ -34,7 +35,7 @@ public class EditPayerActivity extends BaseMenuActivity implements EditPayerFrag
             currentTripId = this.getIntent().getLongExtra(this.getString(R.string.global_current_trip_id), 0);
         }
 
-        //Changues edit trip data fragment.
+        //Changes edit trip data fragment.
         this.getSupportFragmentManager().beginTransaction().replace(R.id.edit_fragment_payer, EditPayerFragment.newInstance(currentPayer, currentTripId)).commit();
     }
 
@@ -83,7 +84,7 @@ public class EditPayerActivity extends BaseMenuActivity implements EditPayerFrag
 
     @Override
     public void onDeleteConfirmClick(DialogFragment dialog, Long currentPayerId) {
-        PayerDaoImpl.getInstance().delete(currentPayerId);
+        TripBOImpl.getInstance(null).deletePayer(currentPayerId);
         finish();
     }
 
