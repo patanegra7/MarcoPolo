@@ -5,9 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import cat.dme.smart.marcopolo.R;
+import cat.dme.smart.marcopolo.dao.impl.TripDaoImpl;
 import cat.dme.smart.marcopolo.model.global.MarcoPoloApplication;
 
 /**
@@ -24,6 +26,22 @@ public abstract class BaseMenuActivity extends AppCompatActivity {
     protected void configureToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         this.setSupportActionBar(toolbar);
+        //this.getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        //this.getSupportActionBar().setLogo(R.mipmap.ic_launcher);
+        //this.getSupportActionBar().setDisplayUseLogoEnabled(true);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        String destination = this.getMyApplication().getCurrentTripDestination();
+        if (destination!=null && destination.length()>0) {
+            mTitle.setText(destination);
+        }
     }
 
     @Override

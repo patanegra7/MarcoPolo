@@ -45,36 +45,6 @@ public class TripDaoImpl implements TripDao {
 
     @Override
     public List<Trip> getAll() {
-        /*
-        Trip trip = new Trip();
-        trip.set_id(new Long(1));
-        trip.setDestination("Delta de l'Ebre");
-        trip.setDescription("Escapada de fin de semana a ver aves");
-        trip.setEndDate(new Date());
-        trip.setStartDate(new Date());
-        trip.setStatus(TripStatus.FINISH);
-
-        Trip trip2 = new Trip();
-        trip2.set_id(new Long(2));
-        trip2.setDestination("Roma");
-        trip2.setDescription("Escapada de fin de semana");
-        trip2.setEndDate(new Date());
-        trip2.setStartDate(new Date());
-        trip2.setStatus(TripStatus.LIVE);
-
-        Trip trip3 = new Trip();
-        trip3.set_id(new Long(3));
-        trip3.setDestination("Suiza");
-        trip3.setDescription("A pasar frío");
-        trip3.setEndDate(new Date());
-        trip3.setStartDate(new Date());
-        trip3.setStatus(TripStatus.COMING_SOON);
-
-        List<Trip> trips = new ArrayList<>();
-        trips.add(trip);
-        trips.add(trip2);
-        trips.add(trip3);
-*/
         // Get the cursor for this query
         Cursor tripsCursor = CupboardFactory.cupboard().withDatabase(DbHelper.getDbHelper().getReadableDatabase()).query(Trip.class).getCursor();
         List<Trip> trips = new ArrayList<>();
@@ -93,38 +63,7 @@ public class TripDaoImpl implements TripDao {
 
     @Override
     public Trip get(Long id) {
-        /*
-        Trip trip = new Trip();
-        trip.set_id(new Long(1));
-        trip.setDestination("Delta de l'Ebre");
-        trip.setDescription("Escapada de fin de semana a ver aves");
-        trip.setEndDate(new Date());
-        trip.setStartDate(new Date());
-        trip.setStatus(TripStatus.FINISH);
-
-        Trip trip2 = new Trip();
-        trip2.set_id(new Long(2));
-        trip2.setDestination("Roma");
-        trip2.setDescription("Escapada de fin de semana");
-        trip2.setEndDate(new Date());
-        trip2.setStartDate(new Date());
-        trip2.setStatus(TripStatus.LIVE);
-
-        Trip trip3 = new Trip();
-        trip3.set_id(new Long(3));
-        trip3.setDestination("Suiza");
-        trip3.setDescription("A pasar frío");
-        trip3.setEndDate(new Date());
-        trip3.setStartDate(new Date());
-        trip3.setStatus(TripStatus.COMING_SOON);
-
-        List<Trip> trips = new ArrayList<>();
-        trips.add(trip);
-        trips.add(trip2);
-        trips.add(trip3);
-        */
         return CupboardFactory.cupboard().withDatabase(DbHelper.getDbHelper().getReadableDatabase()).get(Trip.class, id);
-        //return trips.get(id.intValue()-1);
     }
 // Get the first matching Bunny with name Max
  //       Bunny bunny = CupboardFactory.cupboard().withDatabase(db).query(Bunny.class).withSelection( "name = ?", "Max").get();

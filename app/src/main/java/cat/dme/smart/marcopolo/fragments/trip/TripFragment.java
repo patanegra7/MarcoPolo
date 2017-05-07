@@ -170,6 +170,7 @@ public class TripFragment extends Fragment implements View.OnClickListener {
         if(checked) {
             Snackbar.make(view, "selected", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             ((MarcoPoloApplication)this.getActivity().getApplication()).setCurrentTripId(this.currentTrip.get_id());
+            ((MarcoPoloApplication)this.getActivity().getApplication()).setCurrentTripDestination(this.currentTrip.getDestination());
 
         } else {
             Snackbar.make(view, "unselected is invalid", Snackbar.LENGTH_LONG).setAction("Action", null).show();

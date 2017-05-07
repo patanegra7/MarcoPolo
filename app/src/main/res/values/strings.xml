@@ -4,6 +4,7 @@
     <string name="preference.file.key">cat.dme.smart.marcopolo.PREFERENCE_FILE</string>
     <string name="global.current.trip">global.current.trip</string>
     <string name="global.current.trip.id">global.current.trip.id</string>
+    <string name="global.current.trip.destination">global.current.trip.destination</string>
     <string name="global.current.concept">global.current.concept</string>
     <string name="global.current.currency">global.current.currency</string>
     <string name="global.current.payer">global.current.payer</string>

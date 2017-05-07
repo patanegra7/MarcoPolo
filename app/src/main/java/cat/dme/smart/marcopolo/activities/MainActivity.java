@@ -28,6 +28,7 @@ public class MainActivity extends BaseMenuActivity { //implements NoticeDialogFr
 
         //init db
         DbHelper.initDbHelper(appContext);
+
     }
 
     @Override
@@ -42,6 +43,7 @@ public class MainActivity extends BaseMenuActivity { //implements NoticeDialogFr
             Trip currentTrip = TripDaoImpl.getInstance().get(currentTripId);
             if(currentTrip==null) {
                 this.getMyApplication().removeCurrentTripId();
+                this.getMyApplication().removeCurrentTripDestination();
                 //this.showNoticeDialog();
                 return;
             }

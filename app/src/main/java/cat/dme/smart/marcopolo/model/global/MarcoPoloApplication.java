@@ -18,6 +18,8 @@ public class MarcoPoloApplication extends Application {
 
     private Long currentTripId;
 
+    private String currentTripDestination;
+
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
@@ -90,6 +92,41 @@ public class MarcoPoloApplication extends Application {
         SharedPreferences sharedPref = this.getApplicationContext().getSharedPreferences(this.getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.remove(this.getString(R.string.global_current_trip_id));
+        editor.commit();
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getCurrentTripDestination() {
+        if(this.currentTripDestination==null) {
+            SharedPreferences sharedPref = this.getApplicationContext().getSharedPreferences(this.getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+            this.currentTripDestination = sharedPref.getString(this.getString(R.string.global_current_trip_destination), "");
+        }
+        return this.currentTripDestination;
+    }
+
+    /**
+     *
+     * @param currentTripDestination
+     */
+    public void setCurrentTripDestination(String currentTripDestination) {
+        this.currentTripDestination = currentTripDestination;
+        SharedPreferences sharedPref = this.getApplicationContext().getSharedPreferences(this.getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(this.getString(R.string.global_current_trip_destination), currentTripDestination);
+        editor.commit();
+    }
+
+    /**
+     *
+     */
+    public void removeCurrentTripDestination() {
+        this.currentTripDestination = null;
+        SharedPreferences sharedPref = this.getApplicationContext().getSharedPreferences(this.getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.remove(this.getString(R.string.global_current_trip_destination));
         editor.commit();
     }
 }
