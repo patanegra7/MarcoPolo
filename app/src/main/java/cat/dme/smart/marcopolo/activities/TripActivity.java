@@ -1,15 +1,10 @@
 package cat.dme.smart.marcopolo.activities;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.view.View;
-import android.widget.CheckBox;
-import android.widget.TextView;
 
 import cat.dme.smart.marcopolo.R;
 import cat.dme.smart.marcopolo.adapters.TripPagerAdapter;

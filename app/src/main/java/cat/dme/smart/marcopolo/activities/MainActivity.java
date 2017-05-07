@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import cat.dme.smart.marcopolo.R;
-import cat.dme.smart.marcopolo.dao.TripDao;
 import cat.dme.smart.marcopolo.dao.impl.DbHelper;
 import cat.dme.smart.marcopolo.dao.impl.TripDaoImpl;
 import cat.dme.smart.marcopolo.fragments.trip.dialog.CreateFirstTripFragment;

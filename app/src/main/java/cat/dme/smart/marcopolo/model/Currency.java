@@ -64,4 +64,17 @@ public class Currency implements Serializable {
                 ", tripId=" + tripId +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Currency currency = (Currency) o;
+        return _id.equals(currency._id);
+    }
+
+    @Override
+    public int hashCode() {
+        return _id.hashCode();
+    }
 }

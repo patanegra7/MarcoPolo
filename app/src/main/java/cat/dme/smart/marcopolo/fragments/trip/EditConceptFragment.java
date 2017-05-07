@@ -1,6 +1,5 @@
 package cat.dme.smart.marcopolo.fragments.trip;
 
-import android.app.DialogFragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -14,7 +13,6 @@ import android.widget.TextView;
 
 import cat.dme.smart.marcopolo.R;
 import cat.dme.smart.marcopolo.exceptions.ValidationException;
-import cat.dme.smart.marcopolo.fragments.trip.dialog.DeleteConceptDialogFragment;
 import cat.dme.smart.marcopolo.model.Concept;
 import cat.dme.smart.marcopolo.model.Trip;
 

@@ -21,8 +21,8 @@ import cat.dme.smart.marcopolo.model.Trip;
  */
 public class ConceptArrayAdapter extends ArrayAdapter<Concept> {
 
-    public ConceptArrayAdapter(Context context, List<Concept> trips) {
-        super(context, 0, trips);
+    public ConceptArrayAdapter(Context context, List<Concept> concepts) {
+        super(context, 0, concepts);
     }
 
     @Override

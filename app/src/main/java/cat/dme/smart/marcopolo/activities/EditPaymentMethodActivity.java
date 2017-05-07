@@ -11,7 +11,6 @@ import cat.dme.smart.marcopolo.dao.impl.PaymentMethodDaoImpl;
 import cat.dme.smart.marcopolo.fragments.trip.EditPaymentMethodFragment;
 import cat.dme.smart.marcopolo.fragments.trip.dialog.DeletePaymentMethodDialogFragment;
 import cat.dme.smart.marcopolo.model.PaymentMethod;
-import cat.dme.smart.marcopolo.model.Payer;
 
 /**
  * Activity to create, delete and update @{link {@link PaymentMethod}} details.

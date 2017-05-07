@@ -27,6 +27,7 @@
         <activity android:name=".activities.EditCurrencyActivity" android:launchMode="singleTask"/>
         <activity android:name=".activities.EditPayerActivity" android:launchMode="singleTask"/>
         <activity android:name=".activities.EditPaymentMethodActivity" android:launchMode="singleTask"/>
+        <activity android:name=".activities.EditExpenseActivity" android:launchMode="singleTask"/>
     </application>
 
 </manifest>

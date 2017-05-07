@@ -44,4 +44,17 @@ public class Payer implements Serializable {
                 ", tripId=" + tripId +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Payer payer = (Payer) o;
+        return _id.equals(payer._id);
+    }
+
+    @Override
+    public int hashCode() {
+        return _id.hashCode();
+    }
 }

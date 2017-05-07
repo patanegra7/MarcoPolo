@@ -8,6 +8,7 @@
     <string name="global.current.currency">global.current.currency</string>
     <string name="global.current.payer">global.current.payer</string>
     <string name="global.current.payment.method">global.current.payment.method</string>
+    <string name="global.current.expense">global.current.expense</string>
 
     <!-- i18n -->
     <string name="app_name">Marco Polo</string>
@@ -73,5 +74,16 @@
     <string name="edit.payment.method.name">payment method name</string>
     <string name="edit.payment.method.validation.error">Incorrect payment method name!</string>
     <string name="edit.payment.method.delete.confirm">Are you sure to delete this payment method?</string>
+
+    <string name="edit.expense.title">Expense Details</string>
+    <string name="edit.expense.date">date</string>
+    <string name="edit.expense.concept">concept</string>
+    <string name="edit.expense.description">description</string>
+    <string name="edit.expense.amount">amount</string>
+    <string name="edit.expense.currency">currency</string>
+    <string name="edit.expense.payer">payer</string>
+    <string name="edit.expense.payment.method">Payment Methods</string>
+    <!--string name="edit.expense.validation.error">Incorrect currency name!</string -->
+    <string name="edit.expense.delete.confirm">Are you sure to delete this expense?</string>
 
 </resources>

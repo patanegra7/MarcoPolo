@@ -1,0 +1,97 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cat.dme.smart.marcopolo.fragments.daily.EditExpenseFragment"
+    android:orientation="vertical"
+    android:weightSum="3">
+
+    <TextView
+        android:id="@+id/edit.expense.title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/edit.expense.title"
+        android:textSize="10pt"/>
+
+    <EditText
+        android:id="@+id/edit.expense.date"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/edit.expense.date"
+        android:inputType="date"/>
+
+    <Spinner
+        android:id="@+id/edit.expense.concept"
+        android:layout_height="wrap_content"
+        android:prompt="@string/edit.expense.concept"
+        android:hint="@string/edit.expense.concept"
+        android:layout_width="fill_parent"/>
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edit.expense.description"
+        android:hint="@string/edit.expense.description"
+        android:inputType="textMultiLine"
+        android:gravity="top|left"
+        android:lines="5"/>
+
+    <EditText
+        android:id="@+id/edit.expense.amount"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/edit.expense.amount"
+        android:inputType="numberDecimal"/>
+
+    <Spinner
+        android:id="@+id/edit.expense.currency"
+        android:layout_height="wrap_content"
+        android:prompt="@string/edit.expense.currency"
+        android:hint="@string/edit.expense.currency"
+        android:layout_width="fill_parent"/>
+
+    <Spinner
+        android:id="@+id/edit.expense.payer"
+        android:layout_height="wrap_content"
+        android:prompt="@string/edit.expense.payer"
+        android:hint="@string/edit.expense.payer"
+        android:layout_width="fill_parent"/>
+
+    <Spinner
+        android:id="@+id/edit.expense.payment.method"
+        android:layout_height="wrap_content"
+        android:prompt="@string/edit.expense.payment.method"
+        android:hint="@string/edit.expense.payment.method"
+        android:layout_width="fill_parent"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <Button
+            android:id="@+id/edit.expense.button.save"
+            android:layout_height="wrap_content"
+            android:text="@string/button.save"
+            android:layout_width="wrap_content"
+            android:weightSum="1"/>
+
+        <Button
+            android:id="@+id/edit.expense.button.delete"
+            android:layout_height="wrap_content"
+            android:text="@string/button.delete"
+            android:layout_width="wrap_content"
+            android:visibility="invisible"
+            android:weightSum="1"/>
+
+        <Button
+            android:id="@+id/edit.expense.button.cancel"
+            android:layout_height="wrap_content"
+            android:text="@string/button.cancel"
+            android:layout_width="wrap_content"
+            android:weightSum="1"/>
+
+    </LinearLayout>
+
+</LinearLayout>

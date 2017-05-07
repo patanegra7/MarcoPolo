@@ -1,4 +1,4 @@
-package cat.dme.smart.marcopolo.fragments.trip.dialog;
+package cat.dme.smart.marcopolo.fragments.daily;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -8,27 +8,26 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 
 import cat.dme.smart.marcopolo.R;
-import cat.dme.smart.marcopolo.model.Concept;
-
+import cat.dme.smart.marcopolo.model.Expense;
 
 /**
- * Dialog to confirm @{link {@link Concept}} deletion.
+ * Dialog to confirm {@link Expense} deletion.
  *
  * Created by VIddA Software - DME Creaciones.
  */
 
-public class DeleteConceptDialogFragment extends DialogFragment {
+public class DeleteExpenseDialogFragment extends DialogFragment {
 
-    private static final String ARG_PARAM1 = "currentConceptId";
+    private static final String ARG_PARAM1 = "currentExpenseId";
 
-    private Long currentConceptId;
+    private Long currentExpenseId;
 
-    private DeleteConceptDialogListener mListener;
+    private DeleteExpenseDialogListener mListener;
 
-    public static DeleteConceptDialogFragment newInstance(Long currentConceptId) {
-        DeleteConceptDialogFragment fragment = new DeleteConceptDialogFragment();
+    public static DeleteExpenseDialogFragment newInstance(Long currentExpenseId) {
+        DeleteExpenseDialogFragment fragment = new DeleteExpenseDialogFragment();
         Bundle args = new Bundle();
-        args.putLong(ARG_PARAM1, currentConceptId);
+        args.putLong(ARG_PARAM1, currentExpenseId);
         fragment.setArguments(args);
         return fragment;
     }
@@ -37,37 +36,35 @@ public class DeleteConceptDialogFragment extends DialogFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (this.getArguments() != null) {
-            this.currentConceptId = this.getArguments().getLong(ARG_PARAM1);
+            this.currentExpenseId = this.getArguments().getLong(ARG_PARAM1);
         }
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof DeleteConceptDialogFragment.DeleteConceptDialogListener) {
-            mListener = (DeleteConceptDialogFragment.DeleteConceptDialogListener) context;
+        if (context instanceof DeleteExpenseDialogFragment.DeleteExpenseDialogListener) {
+            mListener = (DeleteExpenseDialogFragment.DeleteExpenseDialogListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement DeleteConceptDialogListener");
+                    + " must implement DeleteExpenseDialogListener");
         }
     }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
-        if (getActivity() instanceof DeleteConceptDialogFragment.DeleteConceptDialogListener) {
-            mListener = (DeleteConceptDialogFragment.DeleteConceptDialogListener) getActivity();
+        if (getActivity() instanceof DeleteExpenseDialogFragment.DeleteExpenseDialogListener) {
+            mListener = (DeleteExpenseDialogFragment.DeleteExpenseDialogListener) getActivity();
         } else {
             throw new RuntimeException(getActivity().toString()
-                    + " must implement DeleteConceptDialogListener");
+                    + " must implement DeleteExpenseDialogListener");
         }
-
-
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setMessage(R.string.edit_concept_delete_confirm)
+        builder.setMessage(R.string.edit_expense_delete_confirm)
                 .setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        mListener.onDeleteConfirmClick(DeleteConceptDialogFragment.this, currentConceptId);
+                        mListener.onDeleteConfirmClick(DeleteExpenseDialogFragment.this, currentExpenseId);
                     }
                 })
                 .setNegativeButton(R.string.button_cancel, new DialogInterface.OnClickListener() {
@@ -79,8 +76,8 @@ public class DeleteConceptDialogFragment extends DialogFragment {
         return builder.create();
     }
 
-    public interface DeleteConceptDialogListener {
-        public void onDeleteConfirmClick(DialogFragment dialog, Long currentConceptId);
+    public interface DeleteExpenseDialogListener {
+        public void onDeleteConfirmClick(DialogFragment dialog, Long currentExpenseId);
     }
 
 }

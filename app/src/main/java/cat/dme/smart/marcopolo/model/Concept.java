@@ -44,4 +44,17 @@ public class Concept implements Serializable {
                 ", tripId=" + tripId +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Concept concept = (Concept) o;
+        return _id.equals(concept._id);
+    }
+
+    @Override
+    public int hashCode() {
+        return _id.hashCode();
+    }
 }

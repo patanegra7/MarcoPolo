@@ -44,4 +44,17 @@ public class PaymentMethod implements Serializable {
                 ", tripId=" + tripId +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PaymentMethod paymentMethod = (PaymentMethod) o;
+        return _id.equals(paymentMethod._id);
+    }
+
+    @Override
+    public int hashCode() {
+        return _id.hashCode();
+    }
 }

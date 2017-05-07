@@ -36,7 +36,7 @@ public class SettingsActivity extends BaseMenuActivity {
         TripDao tripDao = TripDaoImpl.getInstance();
 
         // Get ListView object from xml
-        final ListView listView = (ListView) findViewById(R.id.list);
+        final ListView listView = (ListView) findViewById(R.id.trip_list);
 
         ArrayAdapter<Trip> adapter = new TripArrayAdapter(this, tripDao.getAll(), currentTripId);
         listView.setAdapter(adapter);

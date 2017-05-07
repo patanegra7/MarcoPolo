@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import cat.dme.smart.marcopolo.R;
 import cat.dme.smart.marcopolo.model.global.MarcoPoloApplication;
@@ -34,11 +35,17 @@ public abstract class BaseMenuActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent = null;
         switch(item.getItemId()) {
             case R.id.daily:
-                Intent intent = new Intent(this, DailyActivity.class);
-                startActivity(intent);
-                return(true);
+                if(this.getMyApplication().getCurrentTripId()!=0L) {
+                    intent = new Intent(this, DailyActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast toast = Toast.makeText(getApplicationContext(), R.string.main_not_destination,  Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+                return (true);
             case R.id.summary:
                 intent = new Intent(this, SummaryActivity.class);
                 startActivity(intent);

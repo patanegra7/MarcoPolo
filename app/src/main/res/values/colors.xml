@@ -7,4 +7,5 @@
     <color name="colorAccent">#5F021F</color>
     <!--color name="titleTextColor">#E1B378</color-->
     <!--color name="colorAccent">#FF4081</color-->
+    <color name="colorSecondary">#FFFFFF</color>
 </resources>

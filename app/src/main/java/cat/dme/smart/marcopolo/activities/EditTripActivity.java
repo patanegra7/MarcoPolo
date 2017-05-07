@@ -4,17 +4,11 @@ import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
 
 import cat.dme.smart.marcopolo.R;
-import cat.dme.smart.marcopolo.adapters.TripPagerAdapter;
 import cat.dme.smart.marcopolo.business.impl.TripBOImpl;
-import cat.dme.smart.marcopolo.dao.impl.PayerDaoImpl;
 import cat.dme.smart.marcopolo.dao.impl.TripDaoImpl;
 import cat.dme.smart.marcopolo.fragments.trip.EditTripFragment;
-import cat.dme.smart.marcopolo.fragments.trip.TripFragment;
-import cat.dme.smart.marcopolo.fragments.trip.dialog.DeletePayerDialogFragment;
 import cat.dme.smart.marcopolo.fragments.trip.dialog.DeleteTripDialogFragment;
 import cat.dme.smart.marcopolo.model.Trip;
 

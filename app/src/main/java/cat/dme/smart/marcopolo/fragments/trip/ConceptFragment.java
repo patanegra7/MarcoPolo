@@ -1,6 +1,5 @@
 package cat.dme.smart.marcopolo.fragments.trip;
 
-import android.app.DialogFragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -18,7 +17,6 @@ import cat.dme.smart.marcopolo.R;
 import cat.dme.smart.marcopolo.activities.EditConceptActivity;
 import cat.dme.smart.marcopolo.adapters.ConceptArrayAdapter;
 import cat.dme.smart.marcopolo.dao.impl.ConceptDaoImpl;
-import cat.dme.smart.marcopolo.fragments.trip.dialog.DeleteConceptDialogFragment;
 import cat.dme.smart.marcopolo.model.Concept;
 
 /**

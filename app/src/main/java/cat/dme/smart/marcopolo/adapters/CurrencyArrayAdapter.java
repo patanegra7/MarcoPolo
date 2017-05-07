@@ -19,8 +19,8 @@ import cat.dme.smart.marcopolo.model.Currency;
  */
 public class CurrencyArrayAdapter extends ArrayAdapter<Currency> {
 
-    public CurrencyArrayAdapter(Context context, List<Currency> trips) {
-        super(context, 0, trips);
+    public CurrencyArrayAdapter(Context context, List<Currency> currencies) {
+        super(context, 0, currencies);
     }
 
     @Override

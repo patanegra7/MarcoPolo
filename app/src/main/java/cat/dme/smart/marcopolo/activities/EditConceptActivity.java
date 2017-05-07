@@ -8,11 +8,9 @@ import android.os.Bundle;
 import cat.dme.smart.marcopolo.R;
 import cat.dme.smart.marcopolo.business.impl.TripBOImpl;
 import cat.dme.smart.marcopolo.dao.impl.ConceptDaoImpl;
-import cat.dme.smart.marcopolo.dao.impl.TripDaoImpl;
 import cat.dme.smart.marcopolo.fragments.trip.EditConceptFragment;
 import cat.dme.smart.marcopolo.fragments.trip.dialog.DeleteConceptDialogFragment;
 import cat.dme.smart.marcopolo.model.Concept;
-import cat.dme.smart.marcopolo.model.Trip;
 
 /**
  * Activity to create, delete and update @{link {@link Concept}} details.

@@ -11,7 +11,6 @@ import cat.dme.smart.marcopolo.dao.impl.CurrencyDaoImpl;
 import cat.dme.smart.marcopolo.fragments.trip.EditCurrencyFragment;
 import cat.dme.smart.marcopolo.fragments.trip.dialog.DeleteCurrencyDialogFragment;
 import cat.dme.smart.marcopolo.model.Currency;
-import cat.dme.smart.marcopolo.model.Payer;
 
 /**
  * Activity to create, delete and update @{link {@link Currency}} details.

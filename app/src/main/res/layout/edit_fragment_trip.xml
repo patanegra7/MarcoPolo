@@ -40,6 +40,7 @@
         android:id="@+id/edit.trip.description"
         android:hint="@string/edit.trip.description"
         android:inputType="textMultiLine"
+        android:gravity="top|left"
         android:lines="5"/>
 
     <Spinner

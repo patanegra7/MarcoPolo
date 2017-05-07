@@ -7,5 +7,6 @@ package cat.dme.smart.marcopolo.contants;
 
 public interface Constants {
     String DATE_MASK = "dd/MM/yyyy";
+    String DATE_HOUR_MASK = "dd/MM/yyyy  HH:mm";
     String SPACE = " ";
 }

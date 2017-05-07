@@ -16,7 +16,6 @@ import java.util.Date;
 
 import cat.dme.smart.marcopolo.R;
 import cat.dme.smart.marcopolo.activities.EditTripActivity;
-import cat.dme.smart.marcopolo.activities.TripActivity;
 import cat.dme.smart.marcopolo.contants.Constants;
 import cat.dme.smart.marcopolo.model.Trip;
 import cat.dme.smart.marcopolo.model.global.MarcoPoloApplication;
