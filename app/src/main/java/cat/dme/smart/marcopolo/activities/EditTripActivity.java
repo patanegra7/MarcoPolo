@@ -11,6 +11,7 @@ import cat.dme.smart.marcopolo.dao.impl.TripDaoImpl;
 import cat.dme.smart.marcopolo.fragments.trip.EditTripFragment;
 import cat.dme.smart.marcopolo.fragments.trip.dialog.DeleteTripDialogFragment;
 import cat.dme.smart.marcopolo.model.Trip;
+import cat.dme.smart.marcopolo.model.global.MarcoPoloApplication;
 
 /**
  * Activity to edit a trip basic configuration.
@@ -68,6 +69,10 @@ public class EditTripActivity extends BaseMenuActivity implements EditTripFragme
     @Override
     public void onEditFragmentUpdate(Trip trip) {
         TripDaoImpl.getInstance().update(trip);
+        // Updating the current trip destination
+        if(this.getMyApplication().getCurrentTripId().equals(trip.get_id())) {
+            this.getMyApplication().setCurrentTripDestination(trip.getDestination());
+        }
         finish();
     }
 

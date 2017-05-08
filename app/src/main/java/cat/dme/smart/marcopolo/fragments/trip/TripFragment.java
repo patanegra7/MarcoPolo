@@ -71,8 +71,7 @@ public class TripFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_trip, container, false);
-        return view;
+        return inflater.inflate(R.layout.fragment_trip, container, false);
     }
 
     @Override
@@ -171,7 +170,6 @@ public class TripFragment extends Fragment implements View.OnClickListener {
             Snackbar.make(view, "selected", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             ((MarcoPoloApplication)this.getActivity().getApplication()).setCurrentTripId(this.currentTrip.get_id());
             ((MarcoPoloApplication)this.getActivity().getApplication()).setCurrentTripDestination(this.currentTrip.getDestination());
-
         } else {
             Snackbar.make(view, "unselected is invalid", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             ((CheckBox) view).setChecked(true);
