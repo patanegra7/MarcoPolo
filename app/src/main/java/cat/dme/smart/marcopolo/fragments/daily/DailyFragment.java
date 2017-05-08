@@ -17,7 +17,6 @@ import cat.dme.smart.marcopolo.R;
 import cat.dme.smart.marcopolo.activities.EditExpenseActivity;
 import cat.dme.smart.marcopolo.adapters.ExpenseArrayAdapter;
 import cat.dme.smart.marcopolo.business.impl.ExpenseBOImpl;
-import cat.dme.smart.marcopolo.dao.impl.ExpenseDaoImpl;
 import cat.dme.smart.marcopolo.model.Expense;
 
 /**

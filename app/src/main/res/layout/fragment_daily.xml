@@ -7,19 +7,25 @@
     tools:context="cat.dme.smart.marcopolo.fragments.daily.DailyFragment"
     android:orientation="vertical">
 
-    <ListView
-        android:id="@+id/expenses_list"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent">
-    </ListView>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_add_expense"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="end|bottom"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_menu_add" />
+        <ListView
+            android:id="@+id/expenses_list"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+        </ListView>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_add_expense"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="@dimen/fab_margin"
+            app:srcCompat="@android:drawable/ic_menu_add"/>
+
+    </FrameLayout>
 
 </LinearLayout>
 

@@ -16,18 +16,42 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.DailyActivity" android:launchMode="singleTask"/>
-        <activity android:name=".activities.SummaryActivity" android:launchMode="singleTask"/>
-        <activity android:name=".activities.ExportActivity" android:launchMode="singleTask"/>
-        <activity android:name=".activities.CreditsActivity" android:launchMode="singleTask"/>
-        <activity android:name=".activities.SettingsActivity" android:launchMode="singleTask"/>
-        <activity android:name=".activities.TripActivity" android:launchMode="singleTask"/>
-        <activity android:name=".activities.EditTripActivity" android:launchMode="singleTask"/>
-        <activity android:name=".activities.EditConceptActivity" android:launchMode="singleTask"/>
-        <activity android:name=".activities.EditCurrencyActivity" android:launchMode="singleTask"/>
-        <activity android:name=".activities.EditPayerActivity" android:launchMode="singleTask"/>
-        <activity android:name=".activities.EditPaymentMethodActivity" android:launchMode="singleTask"/>
-        <activity android:name=".activities.EditExpenseActivity" android:launchMode="singleTask"/>
+        <activity
+            android:name=".activities.DailyActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activities.SummaryActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activities.ExportActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activities.CreditsActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activities.SettingsActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activities.TripActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activities.EditTripActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activities.EditConceptActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activities.EditCurrencyActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activities.EditPayerActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activities.EditPaymentMethodActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activities.EditExpenseActivity"
+            android:launchMode="singleTask" />
     </application>
 
 </manifest>

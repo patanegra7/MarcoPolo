@@ -77,7 +77,7 @@ public class DeleteExpenseDialogFragment extends DialogFragment {
     }
 
     public interface DeleteExpenseDialogListener {
-        public void onDeleteConfirmClick(DialogFragment dialog, Long currentExpenseId);
+        void onDeleteConfirmClick(DialogFragment dialog, Long currentExpenseId);
     }
 
 }

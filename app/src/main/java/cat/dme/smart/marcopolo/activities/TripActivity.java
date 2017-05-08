@@ -29,14 +29,10 @@ public class TripActivity extends BaseMenuActivity {
 
         //Creates tabs titles
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_currency));
-                //Text(this.getString(R.string.trip_currency)));
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_payer));
-                //Text(this.getString(R.string.trip_payer)));
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_concept));
-                //Text(this.getString(R.string.trip_concept)));
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_payment_method));
-                //Text(this.getString(R.string.trip_payment_method)));
+        tabLayout.addTab(tabLayout.newTab().setText(this.getString(R.string.trip_currency))); // Icon(R.drawable.ic_currency));
+        tabLayout.addTab(tabLayout.newTab().setText(this.getString(R.string.trip_payer))); //Icon(R.drawable.ic_payer));
+        tabLayout.addTab(tabLayout.newTab().setText(this.getString(R.string.trip_concept))); //Icon(R.drawable.ic_concept));
+        tabLayout.addTab(tabLayout.newTab().setText(this.getString(R.string.trip_payment_method)));  //Icon(R.drawable.ic_payment_method));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         //Creates tabs content

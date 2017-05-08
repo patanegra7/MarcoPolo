@@ -80,7 +80,7 @@ public class DeletePayerDialogFragment extends DialogFragment {
     }
 
     public interface DeletePayerDialogListener {
-        public void onDeleteConfirmClick(DialogFragment dialog, Long currentPayerId);
+        void onDeleteConfirmClick(DialogFragment dialog, Long currentPayerId);
     }
 
 }

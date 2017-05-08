@@ -80,7 +80,7 @@ public class DeletePaymentMethodDialogFragment extends DialogFragment {
     }
 
     public interface DeletePaymentMethodDialogListener {
-        public void onDeleteConfirmClick(DialogFragment dialog, Long currentPaymentMethodId);
+        void onDeleteConfirmClick(DialogFragment dialog, Long currentPaymentMethodId);
     }
 
 }

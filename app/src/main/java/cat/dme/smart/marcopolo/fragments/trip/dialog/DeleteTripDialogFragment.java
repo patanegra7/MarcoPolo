@@ -80,7 +80,7 @@ public class DeleteTripDialogFragment extends DialogFragment {
     }
 
     public interface DeleteTripDialogListener {
-        public void onDeleteConfirmClick(DialogFragment dialog, Long currentTripId);
+        void onDeleteConfirmClick(DialogFragment dialog, Long currentTripId);
     }
 
 }

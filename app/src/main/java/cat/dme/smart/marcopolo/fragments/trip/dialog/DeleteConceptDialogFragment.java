@@ -80,7 +80,7 @@ public class DeleteConceptDialogFragment extends DialogFragment {
     }
 
     public interface DeleteConceptDialogListener {
-        public void onDeleteConfirmClick(DialogFragment dialog, Long currentConceptId);
+        void onDeleteConfirmClick(DialogFragment dialog, Long currentConceptId);
     }
 
 }

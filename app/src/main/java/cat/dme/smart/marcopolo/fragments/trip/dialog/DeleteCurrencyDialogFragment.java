@@ -80,7 +80,7 @@ public class DeleteCurrencyDialogFragment extends DialogFragment {
     }
 
     public interface DeleteCurrencyDialogListener {
-        public void onDeleteConfirmClick(DialogFragment dialog, Long currentCurrencyId);
+        void onDeleteConfirmClick(DialogFragment dialog, Long currentCurrencyId);
     }
 
 }

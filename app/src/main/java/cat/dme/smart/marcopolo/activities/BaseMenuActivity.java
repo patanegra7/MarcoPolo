@@ -36,6 +36,7 @@ public abstract class BaseMenuActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        // Update toolbar with trip destination
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
         String destination = this.getMyApplication().getCurrentTripDestination();
