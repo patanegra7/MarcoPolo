@@ -21,7 +21,7 @@ import cat.dme.smart.marcopolo.model.Trip;
  *
  * Created by VIddA Software - DME Creaciones.
  */
-public class EditCurrencyFragment extends Fragment implements View.OnClickListener { //, DeleteCurrencyDialogFragment.DeleteCurrencyDialogListener {
+public class EditCurrencyFragment extends Fragment implements View.OnClickListener {
 
     private static final String ARG_PARAM1 = "currentCurrency";
     private static final String ARG_PARAM2 = "currentTripId";

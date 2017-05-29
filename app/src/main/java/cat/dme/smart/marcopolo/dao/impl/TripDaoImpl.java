@@ -87,8 +87,6 @@ public class TripDaoImpl implements TripDao {
     @Override
     public void delete(Long id) {
         CupboardFactory.cupboard().withDatabase(DbHelper.getDbHelper().getWritableDatabase()).delete(Trip.class, id);
-
-//        cupboard().withDatabase(db).delete(bunny);
-//        cupboard().withDatabase(db).delete(Bunny.class, "name = ?", "Max");
     }
+
 }

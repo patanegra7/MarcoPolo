@@ -1,7 +1,10 @@
 package cat.dme.smart.marcopolo.business.impl;
 
 import android.content.Context;
+import android.database.Cursor;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import cat.dme.smart.marcopolo.R;
@@ -9,6 +12,7 @@ import cat.dme.smart.marcopolo.business.ExpenseBO;
 import cat.dme.smart.marcopolo.business.TripBO;
 import cat.dme.smart.marcopolo.dao.impl.ConceptDaoImpl;
 import cat.dme.smart.marcopolo.dao.impl.CurrencyDaoImpl;
+import cat.dme.smart.marcopolo.dao.impl.DbHelper;
 import cat.dme.smart.marcopolo.dao.impl.ExpenseDaoImpl;
 import cat.dme.smart.marcopolo.dao.impl.PayerDaoImpl;
 import cat.dme.smart.marcopolo.dao.impl.PaymentMethodDaoImpl;
@@ -26,6 +30,26 @@ import cat.dme.smart.marcopolo.model.Trip;
  * Created by VIddA Software - DME Creaciones.
  */
 public class ExpenseBOImpl implements ExpenseBO {
+
+    /**
+     * Query to get all trip expenses by trip and grouped by currency.
+     */
+    String AMOUNT_BY_CURRENCY = "select sum(amount), currency from Expense where tripId = ? group by currency;";
+
+    /**
+     * Query to get all trip expenses by trip and grouped by payers and currencies.
+     */
+    String AMOUNT_BY_PAYERS = "select sum(amount), payer, currency from Expense where tripId = ? group by payer, currency;";
+
+    /**
+     * Query to get all trip expenses by trip and grouped by concepts and currencies.
+     */
+    String AMOUNT_BY_CONCEPTS = "select sum(amount), concept, currency from Expense where tripId = ? group by concept, currency;";
+
+    /**
+     * Query to get all trip expenses by trip and grouped by payment methods and currencies.
+     */
+    String AMOUNT_BY_PAYMENT_METHODS = "select sum(amount), paymentMethod, currency from Expense where tripId = ? group by paymentMethod, currency;";
 
     /**
      * Default constructor. Singleton implementation.
@@ -71,4 +95,84 @@ public class ExpenseBOImpl implements ExpenseBO {
         }
         return expenses;
     }
+
+    @Override
+    public List<Expense> amountByCurrency(Long tripId) {
+        List<Expense> expenses = new ArrayList<>();
+        Cursor expensesCursor = null;
+        try {
+            expensesCursor = DbHelper.getDbHelper().getWritableDatabase().rawQuery(AMOUNT_BY_CURRENCY, new String[]{tripId.toString()});
+            while(expensesCursor.moveToNext()) {
+                Expense expense = new Expense();
+                expense.setAmount(new BigDecimal(expensesCursor.getString(0)));
+                expense.setCurrency(CurrencyDaoImpl.getInstance().get(expensesCursor.getLong(1)));
+                expenses.add(expense);
+            }
+        } finally {
+            // close the cursor
+            expensesCursor.close();
+        }
+        return expenses;
+    }
+
+    @Override
+    public List<Expense> amountByPayerAndCurrency(Long tripId) {
+        List<Expense> expenses = new ArrayList<>();
+        Cursor expensesCursor = null;
+        try {
+            expensesCursor = DbHelper.getDbHelper().getWritableDatabase().rawQuery(AMOUNT_BY_PAYERS, new String[]{tripId.toString()});
+            while(expensesCursor.moveToNext()) {
+                Expense expense = new Expense();
+                expense.setAmount(new BigDecimal(expensesCursor.getString(0)));
+                expense.setPayer(PayerDaoImpl.getInstance().get(expensesCursor.getLong(1)));
+                expense.setCurrency(CurrencyDaoImpl.getInstance().get(expensesCursor.getLong(2)));
+                expenses.add(expense);
+            }
+        } finally {
+            // close the cursor
+            expensesCursor.close();
+        }
+        return expenses;
+    }
+
+    @Override
+    public List<Expense> amountByConceptsAndCurrency(Long tripId) {
+        List<Expense> expenses = new ArrayList<>();
+        Cursor expensesCursor = null;
+        try {
+            expensesCursor = DbHelper.getDbHelper().getWritableDatabase().rawQuery(AMOUNT_BY_CONCEPTS, new String[]{tripId.toString()});
+            while(expensesCursor.moveToNext()) {
+                Expense expense = new Expense();
+                expense.setAmount(new BigDecimal(expensesCursor.getString(0)));
+                expense.setConcept(ConceptDaoImpl.getInstance().get(expensesCursor.getLong(1)));
+                expense.setCurrency(CurrencyDaoImpl.getInstance().get(expensesCursor.getLong(2)));
+                expenses.add(expense);
+            }
+        } finally {
+            // close the cursor
+            expensesCursor.close();
+        }
+        return expenses;
+    }
+
+    @Override
+    public List<Expense> amountByPaymentMethodsAndCurrency(Long tripId) {
+        List<Expense> expenses = new ArrayList<>();
+        Cursor expensesCursor = null;
+        try {
+            expensesCursor = DbHelper.getDbHelper().getWritableDatabase().rawQuery(AMOUNT_BY_PAYMENT_METHODS, new String[]{tripId.toString()});
+            while(expensesCursor.moveToNext()) {
+                Expense expense = new Expense();
+                expense.setAmount(new BigDecimal(expensesCursor.getString(0)));
+                expense.setPaymentMethod(PaymentMethodDaoImpl.getInstance().get(expensesCursor.getLong(1)));
+                expense.setCurrency(CurrencyDaoImpl.getInstance().get(expensesCursor.getLong(2)));
+                expenses.add(expense);
+            }
+        } finally {
+            // close the cursor
+            expensesCursor.close();
+        }
+        return expenses;
+    }
+
 }

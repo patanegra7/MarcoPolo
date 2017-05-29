@@ -28,7 +28,7 @@ public class TripActivity extends BaseMenuActivity {
         Long currentTripId = this.getIntent().getLongExtra(this.getString(R.string.global_current_trip_id), 0);
 
         //Creates tabs titles
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.trip_tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText(this.getString(R.string.trip_currency))); // Icon(R.drawable.ic_currency));
         tabLayout.addTab(tabLayout.newTab().setText(this.getString(R.string.trip_payer))); //Icon(R.drawable.ic_payer));
         tabLayout.addTab(tabLayout.newTab().setText(this.getString(R.string.trip_concept))); //Icon(R.drawable.ic_concept));
@@ -36,7 +36,7 @@ public class TripActivity extends BaseMenuActivity {
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         //Creates tabs content
-        final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+        final ViewPager viewPager = (ViewPager) findViewById(R.id.trip_pager);
         final TripPagerAdapter adapter = new TripPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount(), currentTripId);
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));

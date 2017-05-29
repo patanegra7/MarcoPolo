@@ -66,8 +66,7 @@ public abstract class BaseMenuActivity extends AppCompatActivity {
                 }
                 return (true);
             case R.id.summary:
-                intent = new Intent(this, SummaryActivity.class);
-                startActivity(intent);
+                startActivity(SummaryActivity.runActivity(this));
                 return(true);
             case R.id.settings:
                 this.startActivity(SettingsActivity.runActivity(this));
@@ -77,7 +76,7 @@ public abstract class BaseMenuActivity extends AppCompatActivity {
                 startActivity(intent);
                 return(true);
             case R.id.about:
-                this.startActivity(new Intent(this, CreditsActivity.class));
+                this.startActivity(CreditsActivity.runActivity(this));
                 return(true);
             case R.id.exit:
                 intent = new Intent(Intent.ACTION_MAIN);

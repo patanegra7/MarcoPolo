@@ -11,22 +11,22 @@
         android:id="@+id/summary"
         android:icon="@android:drawable/ic_menu_agenda"
         android:title="@string/menu.summary"
-        app:showAsAction="never|withText"/>
+        app:showAsAction="never"/>
     <item
         android:id="@+id/export"
         android:icon="@android:drawable/ic_menu_save"
         android:title="@string/menu.export"
-        app:showAsAction="ifRoom|withText"/>
+        app:showAsAction="never"/>
     <item
         android:id="@+id/settings"
         android:icon="@android:drawable/ic_menu_manage"
         android:title="@string/menu.settings"
-        app:showAsAction="ifRoom|withText"/>
+        app:showAsAction="never|withText"/>
     <item
         android:id="@+id/about"
         android:icon="@android:drawable/ic_dialog_info"
         android:title="@string/menu.about"
-        app:showAsAction="ifRoom|withText"/>
+        app:showAsAction="never|withText"/>
     <item
         android:id="@+id/exit"
         android:title="@string/menu.exit"

@@ -1,30 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_summary"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-<!--android:fitsSystemWindows="true"-->
+    android:orientation="vertical"
+    android:fitsSystemWindows="true">
+
     <include
         layout="@layout/toolbar_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <android.support.design.widget.TabLayout
-        android:id="@+id/sliding_tabs"
+        android:id="@+id/summary_tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabIndicatorColor="@color/colorPrimaryMark"
         app:tabIndicatorHeight="5dp"
-        app:tabMode="fixed" />
+        app:tabMode="fixed"
+        android:background="@color/colorPrimary"
+    android:elevation="6dp"
+    app:tabSelectedTextColor="@color/colorPrimaryMark"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <!-- app:tabTextColor="@color/colorPrimaryMark" -->
+    <!--android:minHeight="?attr/actionBarSize" Pasar las propiedades a estilo!!-->
 
     <!-- Pasar las propiedades a estilo!!-->
 
     <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="0px"
-        android:layout_weight="1"
-        android:background="@android:color/white" />
+        android:id="@+id/summary_pager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

@@ -5,6 +5,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import java.util.List;
+
 import cat.dme.smart.marcopolo.R;
 import cat.dme.smart.marcopolo.dao.impl.DbHelper;
 import cat.dme.smart.marcopolo.dao.impl.TripDaoImpl;
@@ -60,6 +62,7 @@ public class MainActivity extends BaseMenuActivity { //implements NoticeDialogFr
 
         TextView tvCurrentTripDescription = (TextView) findViewById(R.id.current_trip_description);
         tvCurrentTripDescription.setText(description);
+
 
     }
 

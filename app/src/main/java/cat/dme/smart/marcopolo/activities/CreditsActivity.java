@@ -1,5 +1,7 @@
 package cat.dme.smart.marcopolo.activities;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -23,6 +25,9 @@ public class CreditsActivity extends BaseMenuActivity {
 
         TextView tvVersion = (TextView) findViewById(R.id.textVersion);
         tvVersion.setText(this.getString(R.string.app_name) + " " + versionName);
+    }
 
+    public static Intent runActivity(Context context) {
+        return new Intent(context, CreditsActivity.class);
     }
 }

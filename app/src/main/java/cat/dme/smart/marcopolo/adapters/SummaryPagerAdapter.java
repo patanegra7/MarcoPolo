@@ -4,22 +4,22 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import cat.dme.smart.marcopolo.fragments.trip.ConceptFragment;
-import cat.dme.smart.marcopolo.fragments.trip.CurrencyFragment;
-import cat.dme.smart.marcopolo.fragments.trip.PayerFragment;
-import cat.dme.smart.marcopolo.fragments.trip.PaymentMethodFragment;
+import cat.dme.smart.marcopolo.fragments.summary.SummaryConceptFragment;
+import cat.dme.smart.marcopolo.fragments.summary.SummaryCurrencyFragment;
+import cat.dme.smart.marcopolo.fragments.summary.SummaryPayerFragment;
+import cat.dme.smart.marcopolo.fragments.summary.SummaryPaymentMethodFragment;
 
 /**
  * TODO: Explain class
  * Created by VIddA Software - DME Creaciones.
  */
 
-public class TripPagerAdapter extends FragmentPagerAdapter {
+public class SummaryPagerAdapter extends FragmentPagerAdapter {
     private int mNumOfTabs;
     private Long tripId;
 
 
-    public TripPagerAdapter(FragmentManager fm, int NumOfTabs, Long tripId) {
+    public SummaryPagerAdapter(FragmentManager fm, int NumOfTabs, Long tripId) {
         super(fm);
         this.mNumOfTabs = NumOfTabs;
         this.tripId = tripId;
@@ -30,13 +30,13 @@ public class TripPagerAdapter extends FragmentPagerAdapter {
 
         switch (position) {
             case 0:
-                return  CurrencyFragment.newInstance(tripId);
+                return SummaryCurrencyFragment.newInstance(tripId);
             case 1:
-                return PayerFragment.newInstance(tripId);
+                return SummaryPayerFragment.newInstance(tripId);
             case 2:
-                return ConceptFragment.newInstance(tripId);
+                return SummaryConceptFragment.newInstance(tripId);
             case 3:
-                return PaymentMethodFragment.newInstance(tripId);
+                return SummaryPaymentMethodFragment.newInstance(tripId);
             default:
                 return null;
         }
