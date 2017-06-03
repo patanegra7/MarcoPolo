@@ -4,8 +4,11 @@ import android.content.Context;
 import android.database.Cursor;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import cat.dme.smart.marcopolo.R;
 import cat.dme.smart.marcopolo.business.ExpenseBO;
@@ -173,6 +176,69 @@ public class ExpenseBOImpl implements ExpenseBO {
             expensesCursor.close();
         }
         return expenses;
+    }
+
+    @Override
+    public Map<String, BigDecimal> calculateTotalByCurrency(List<Expense> expenses) {
+        Map<String, BigDecimal> total = new HashMap<>();
+        for (Expense expense : expenses) {
+            String currencyName = expense.getCurrency().getName();
+            if (total.containsKey(currencyName)) {
+                total.put(currencyName, total.get(currencyName).add(expense.getAmount()));
+            } else {
+                total.put(currencyName, expense.getAmount());
+            }
+        }
+        return total;
+    }
+
+    private Float calculatePercentage(Expense expense, BigDecimal total) {
+        return expense.getAmount().multiply(new BigDecimal("100").divide(total, MathContext.DECIMAL32)).floatValue();
+    }
+
+    @Override
+    public Map<String, Map<String, Float>> percentageConcepts(List<Expense> expenses, Map<String, BigDecimal> total) {
+        Map<String, Map<String, Float>> percentages = new HashMap<>();
+        for(Expense expense: expenses) {
+            String currencyName = expense.getCurrency().getName();
+            Map<String, Float> percentage = percentages.get(currencyName);
+            if (percentage==null) {
+                percentage = new HashMap<>();
+                percentages.put(currencyName, percentage);
+            }
+            percentage.put(expense.getConcept().getName(), this.calculatePercentage(expense, total.get(currencyName)));
+        }
+        return percentages;
+    }
+
+    @Override
+    public Map<String, Map<String, Float>> percentagePayers(List<Expense> expenses, Map<String, BigDecimal> total) {
+        Map<String, Map<String, Float>> percentages = new HashMap<>();
+        for(Expense expense: expenses) {
+            String currencyName = expense.getCurrency().getName();
+            Map<String, Float> percentage = percentages.get(currencyName);
+            if (percentage==null) {
+                percentage = new HashMap<>();
+                percentages.put(currencyName, percentage);
+            }
+            percentage.put(expense.getPayer().getName(), this.calculatePercentage(expense, total.get(currencyName)));
+        }
+        return percentages;
+    }
+
+    @Override
+    public Map<String, Map<String, Float>> percentagePaymentMethods(List<Expense> expenses, Map<String, BigDecimal> total) {
+        Map<String, Map<String, Float>> percentages = new HashMap<>();
+        for(Expense expense: expenses) {
+            String currencyName = expense.getCurrency().getName();
+            Map<String, Float> percentage = percentages.get(currencyName);
+            if (percentage==null) {
+                percentage = new HashMap<>();
+                percentages.put(currencyName, percentage);
+            }
+            percentage.put(expense.getPaymentMethod().getName(), this.calculatePercentage(expense, total.get(currencyName)));
+        }
+        return percentages;
     }
 
 }

@@ -8,6 +8,12 @@
         android:title="@string/menu.daily"
         app:showAsAction="always"/>
     <item
+        android:id="@+id/currency_exchange"
+        android:icon="@android:drawable/ic_menu_my_calendar"
+        android:title="@string/menu.currency.exchange"
+        app:showAsAction="never"/>
+
+    <item
         android:id="@+id/summary"
         android:icon="@android:drawable/ic_menu_agenda"
         android:title="@string/menu.summary"

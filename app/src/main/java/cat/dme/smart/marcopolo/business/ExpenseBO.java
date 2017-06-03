@@ -2,8 +2,10 @@ package cat.dme.smart.marcopolo.business;
 
 import android.database.Cursor;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import cat.dme.smart.marcopolo.dao.impl.DbHelper;
 import cat.dme.smart.marcopolo.model.Concept;
@@ -60,4 +62,25 @@ public interface ExpenseBO {
      */
     List<Expense> amountByPaymentMethodsAndCurrency(Long tripId);
 
+    /**
+     * Calculates the total amount by currency from a list of {@link Expense}.
+     *
+     * @param expenses a list of {@link Expense}.
+     * @return a Map with total amount by currency.
+     */
+    Map<String, BigDecimal> calculateTotalByCurrency(List<Expense> expenses);
+
+    /**
+     * TODO: JAVADOC
+     * @param expenses
+     * @param total
+     * @return
+     */
+    Map<String, Map<String, Float>> percentageConcepts(List<Expense> expenses, Map<String, BigDecimal> total);
+
+    //Map<String, Float> percentageCurrencies(List<Expense> expenses, Map<String, BigDecimal> total);
+
+    Map<String, Map<String, Float>> percentagePayers(List<Expense> expenses, Map<String, BigDecimal> total);
+
+    Map<String, Map<String, Float>> percentagePaymentMethods(List<Expense> expenses, Map<String, BigDecimal> total);
 }

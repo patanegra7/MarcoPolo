@@ -41,6 +41,10 @@ public class ExpenseArrayAdapter extends ArrayAdapter<Expense> {
 
         TextView tvAmount = (TextView) convertView.findViewById(R.id.expense_amount);
         tvAmount.setText(expense.getAmount().toString() + Constants.SPACE + expense.getCurrency().getSymbol());
+
+        TextView tvPaymentMethod = (TextView) convertView.findViewById(R.id.expense_payment_method);
+        tvPaymentMethod.setText(expense.getPaymentMethod().getName() + " - " + expense.getPayer().getName());
+
         return convertView;
     }
 }

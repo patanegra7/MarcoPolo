@@ -1,16 +1,46 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
-        <!-- Customize your theme here. -->
+    <style name="MarcoPoloTheme" parent="Theme.AppCompat.NoActionBar">
+        <!-- Basic colors -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <!--
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item> -->
         <item name="colorAccent">@color/colorAccent</item>
+
+        <!-- Texts -->
+        <item name="android:textViewStyle">@style/textViewStyle</item>
+
+        <!-- Buttons -->
+        <item name="android:buttonStyle">@style/defaultButton</item>
+        <item name="buttonStyle">@style/defaultButton</item>
+<!--
+        <item name="android:buttonStyle">@style/Widget.AppCompat.Button.Colored</item>
+        <item name="buttonStyle">@style/Widget.AppCompat.Button.Colored</item> -->
+
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="textViewStyle" parent="android:Widget.TextView">
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">@color/defaultTextColor</item>
+        <item name="android:textSize">@dimen/defaultTextSize</item>
+    </style>
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!--style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" /-->
+    <!--style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" / -->
+
+    <style name="defaultButton" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="buttonLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_margin">@dimen/button_layout_margin</item>
+        <item name="android:padding">@dimen/button_layout_margin</item>
+        <item name="android:gravity">center</item>
+    </style>
 
 </resources>
