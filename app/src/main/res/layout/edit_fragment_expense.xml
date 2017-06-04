@@ -6,18 +6,18 @@
     android:orientation="vertical"
     android:weightSum="3">
 
-    <TextView
+
+    <!--TextView
         android:id="@+id/edit.expense.title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/edit.expense.title"
-        android:textSize="10pt"/>
+        style="@style/titleTextViewStyle"
+        android:text="@string/edit.expense.title" /-->
 
     <EditText
         android:id="@+id/edit.expense.date"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="@string/edit.expense.date"
+        android:padding="@dimen/paddingDefault"
         android:inputType="date"/>
 
     <Spinner
@@ -25,7 +25,8 @@
         android:layout_height="wrap_content"
         android:prompt="@string/edit.expense.concept"
         android:hint="@string/edit.expense.concept"
-        android:layout_width="fill_parent"/>
+        android:padding="@dimen/paddingDefault"
+        android:layout_width="wrap_content"/>
 
     <EditText
         android:layout_width="fill_parent"
@@ -34,35 +35,54 @@
         android:hint="@string/edit.expense.description"
         android:inputType="textMultiLine"
         android:gravity="top|left"
+        android:padding="@dimen/paddingDefault"
         android:lines="5"/>
 
-    <EditText
-        android:id="@+id/edit.expense.amount"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/edit.expense.amount"
-        android:inputType="numberDecimal"/>
+    <LinearLayout
+        style="@style/editExpenseSpinnerLayout"
+        android:weightSum="4">
 
-    <Spinner
-        android:id="@+id/edit.expense.currency"
-        android:layout_height="wrap_content"
-        android:prompt="@string/edit.expense.currency"
-        android:hint="@string/edit.expense.currency"
-        android:layout_width="fill_parent"/>
+        <EditText
+            android:id="@+id/edit.expense.amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/edit.expense.amount"
+            android:padding="@dimen/paddingDefault"
+            android:inputType="numberDecimal"
+            android:gravity="right"
+            android:layout_weight="3"/>
 
-    <Spinner
-        android:id="@+id/edit.expense.payer"
-        android:layout_height="wrap_content"
-        android:prompt="@string/edit.expense.payer"
-        android:hint="@string/edit.expense.payer"
-        android:layout_width="fill_parent"/>
+        <Spinner
+            android:id="@+id/edit.expense.currency"
+            android:layout_height="wrap_content"
+            android:prompt="@string/edit.expense.currency"
+            android:hint="@string/edit.expense.currency"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"/>
 
-    <Spinner
-        android:id="@+id/edit.expense.payment.method"
-        android:layout_height="wrap_content"
-        android:prompt="@string/edit.expense.payment.method"
-        android:hint="@string/edit.expense.payment.method"
-        android:layout_width="fill_parent"/>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/editExpenseSpinnerLayout"
+        android:weightSum="2">
+
+        <Spinner
+            android:id="@+id/edit.expense.payer"
+            android:layout_height="wrap_content"
+            android:prompt="@string/edit.expense.payer"
+            android:hint="@string/edit.expense.payer"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"/>
+
+        <Spinner
+            android:id="@+id/edit.expense.payment.method"
+            android:layout_height="wrap_content"
+            android:prompt="@string/edit.expense.payment.method"
+            android:hint="@string/edit.expense.payment.method"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
 
     <LinearLayout
         style="@style/buttonLayout"
@@ -72,23 +92,20 @@
             android:id="@+id/edit.expense.button.save"
             android:layout_height="wrap_content"
             android:text="@string/button.save"
-            android:layout_width="wrap_content"
-            android:weightSum="1"/>
+            android:layout_width="wrap_content"/>
 
         <Button
             android:id="@+id/edit.expense.button.delete"
             android:layout_height="wrap_content"
             android:text="@string/button.delete"
             android:layout_width="wrap_content"
-            android:visibility="invisible"
-            android:weightSum="1"/>
+            android:visibility="invisible"/>
 
         <Button
             android:id="@+id/edit.expense.button.cancel"
             android:layout_height="wrap_content"
             android:text="@string/button.cancel"
-            android:layout_width="wrap_content"
-            android:weightSum="1"/>
+            android:layout_width="wrap_content"/>
 
     </LinearLayout>
 

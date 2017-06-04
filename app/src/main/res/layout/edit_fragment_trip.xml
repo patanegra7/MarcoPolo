@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     tools:context="cat.dme.smart.marcopolo.fragments.trip.EditTripFragment"
     android:orientation="vertical"
+    android:background="#adffaa"
     android:weightSum="3">
 
     <TextView
@@ -51,7 +52,8 @@
         android:layout_width="fill_parent"/>
 
     <LinearLayout
-        style="@style/buttonLayout"
+        style="@style/editExpenseSpinnerLayout"
+        android:background="#ff1144"
         android:weightSum="3">
 
         <Button
