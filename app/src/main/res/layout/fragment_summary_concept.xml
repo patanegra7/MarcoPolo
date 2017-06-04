@@ -7,6 +7,41 @@
     tools:context="cat.dme.smart.marcopolo.fragments.summary.SummaryPayerFragment"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryMark"
+        android:paddingLeft="@dimen/paddingDefault"
+        android:paddingRight="@dimen/paddingDefault"
+        android:layout_marginTop="@dimen/paddingDefault"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:text="Concept"
+            android:layout_weight=".45"/>
+
+        <TextView
+            android:text="Currency"
+            android:layout_width="0dp"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:layout_weight=".30"/>
+
+        <TextView
+            android:text="Amount"
+            android:layout_width="0dp"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:layout_weight=".25"/>
+
+    </LinearLayout>
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
