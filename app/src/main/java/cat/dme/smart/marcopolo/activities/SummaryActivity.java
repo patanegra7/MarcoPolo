@@ -1,20 +1,34 @@
 package cat.dme.smart.marcopolo.activities;
 
+import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 
+import java.util.Map;
+
 import cat.dme.smart.marcopolo.R;
 import cat.dme.smart.marcopolo.adapters.SummaryPagerAdapter;
+import cat.dme.smart.marcopolo.fragments.summary.SummaryConceptFragment;
+import cat.dme.smart.marcopolo.fragments.summary.SummaryPayerFragment;
+import cat.dme.smart.marcopolo.fragments.summary.SummaryPaymentMethodFragment;
+import cat.dme.smart.marcopolo.fragments.summary.dialog.ConceptPieCharDialogFragment;
+import cat.dme.smart.marcopolo.fragments.summary.dialog.PayerPieCharDialogFragment;
+import cat.dme.smart.marcopolo.fragments.summary.dialog.PaymentMethodPieCharDialogFragment;
+import cat.dme.smart.marcopolo.model.Currency;
 
 /**
  * Activity to manage a trip's statistic. It delegates in different fragments: currency, concepts, pay method, ...
  *
  * Created by VIddA Software - DME Creaciones.
  */
-public class SummaryActivity extends BaseMenuActivity {
+public class SummaryActivity extends BaseMenuActivity implements //SummaryCurrencyFragment.OnSummaryCurrencyFragmentListener,
+                                                                 SummaryConceptFragment.OnSummaryConceptFragmentListener,
+                                                                 SummaryPayerFragment.OnSummaryPayerFragmentListener,
+                                                                 SummaryPaymentMethodFragment.OnSummaryPaymentMethodFragmentListener
+{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,4 +77,21 @@ public class SummaryActivity extends BaseMenuActivity {
         return new Intent(context, SummaryActivity.class);
     }
 
+    @Override
+    public void onConceptChartShow(Map<String, Float> percentages, Currency currency) {
+        DialogFragment dialog = ConceptPieCharDialogFragment.newInstance(percentages, currency);
+        dialog.show(this.getFragmentManager(), getString(R.string.summary_concept_percentages_chart_title));
+    }
+
+    @Override
+    public void onPayerChartShow(Map<String, Float> percentages, Currency currency) {
+        DialogFragment dialog = PayerPieCharDialogFragment.newInstance(percentages, currency);
+        dialog.show(this.getFragmentManager(), getString(R.string.summary_payer_percentages_chart_title));
+    }
+
+    @Override
+    public void onPaymentMethodChartShow(Map<String, Float> percentages, Currency currency) {
+        DialogFragment dialog = PaymentMethodPieCharDialogFragment.newInstance(percentages, currency);
+        dialog.show(this.getFragmentManager(), getString(R.string.summary_payment_method_percentages_chart_title));
+    }
 }

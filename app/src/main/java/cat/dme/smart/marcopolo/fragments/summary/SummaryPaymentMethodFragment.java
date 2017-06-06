@@ -6,15 +6,21 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 import cat.dme.smart.marcopolo.R;
 import cat.dme.smart.marcopolo.adapters.CurrencyArrayAdapter;
+import cat.dme.smart.marcopolo.adapters.SummaryConceptArrayAdapter;
 import cat.dme.smart.marcopolo.adapters.SummaryPaymentMethodArrayAdapter;
+import cat.dme.smart.marcopolo.business.ExpenseBO;
 import cat.dme.smart.marcopolo.business.impl.ExpenseBOImpl;
 import cat.dme.smart.marcopolo.dao.impl.CurrencyDaoImpl;
 import cat.dme.smart.marcopolo.model.Currency;
@@ -34,7 +40,7 @@ public class SummaryPaymentMethodFragment extends Fragment {
 
     private Long currentTripId;
 
-    //private OnFragmentInteractionListener mListener;
+    private OnSummaryPaymentMethodFragmentListener mListener;
 
     /**
      * Default constructor
@@ -68,8 +74,7 @@ public class SummaryPaymentMethodFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_summary_payment_method, container, false);
     }
@@ -77,17 +82,56 @@ public class SummaryPaymentMethodFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        List<Expense> paymentMethodSummary = ExpenseBOImpl.getInstance(null).amountByPaymentMethodsAndCurrency(this.currentTripId);
+        ExpenseBO expenseBO = ExpenseBOImpl.getInstance(null);
+        List<Expense> paymentMethodSummary = expenseBO.amountByPaymentMethodsAndCurrency(this.currentTripId);
         // Get ListView object from xml
         final ListView listView = (ListView) this.getView().findViewById(R.id.summary_payment_method_list);
+        // Getting total by currencies
+        Map<Currency, BigDecimal> total = expenseBO.calculateTotalByCurrency(paymentMethodSummary);
+        // Getting percentages by currencies
+        final Map<Currency, Map<String, Float>> percentages = expenseBO.percentagePaymentMethods(paymentMethodSummary, total);
+
         ArrayAdapter<Expense> adapter = new SummaryPaymentMethodArrayAdapter(this.getContext(), paymentMethodSummary);
         listView.setAdapter(adapter);
+
+        // Adding listener to access to pie chart.
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Expense itemValue = (Expense) listView.getItemAtPosition(position);
+                mListener.onPaymentMethodChartShow(percentages.get(itemValue.getCurrency()), itemValue.getCurrency());
+            }
+        });
+
+        // Getting the fragment layout
+        LinearLayout totalFragmentLayout = (LinearLayout)this.getView().findViewById(R.id.summary_payment_method_total_layout);
+
+        // Adding/Updating total info to the fragment
+        for(Currency currency: total.keySet()) {
+            TextView tvTotal = (TextView) totalFragmentLayout.findViewWithTag("total_payment_method_" + currency.getName());
+            if(tvTotal==null) {
+                tvTotal = new TextView(this.getContext());
+                tvTotal.setTag("total_payment_method_" + currency.getName());
+                tvTotal.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                totalFragmentLayout.addView(tvTotal);
+            }
+            tvTotal.setText(total.get(currency).toString() + " " + currency.getSymbol());
+        }
     }
 
+    public interface OnSummaryPaymentMethodFragmentListener {
+        void onPaymentMethodChartShow(Map<String, Float> percentages, Currency currency);
+    }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        if (context instanceof OnSummaryPaymentMethodFragmentListener) {
+            mListener = (OnSummaryPaymentMethodFragmentListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnSummaryPaymentMethodFragmentListener");
+        }
     }
 
     @Override

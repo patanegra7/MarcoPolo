@@ -68,7 +68,7 @@ public interface ExpenseBO {
      * @param expenses a list of {@link Expense}.
      * @return a Map with total amount by currency.
      */
-    Map<String, BigDecimal> calculateTotalByCurrency(List<Expense> expenses);
+    Map<Currency, BigDecimal> calculateTotalByCurrency(List<Expense> expenses);
 
     /**
      * TODO: JAVADOC
@@ -76,11 +76,11 @@ public interface ExpenseBO {
      * @param total
      * @return
      */
-    Map<String, Map<String, Float>> percentageConcepts(List<Expense> expenses, Map<String, BigDecimal> total);
+    Map<Currency, Map<String, Float>> percentageConcepts(List<Expense> expenses, Map<Currency, BigDecimal> total);
 
     //Map<String, Float> percentageCurrencies(List<Expense> expenses, Map<String, BigDecimal> total);
 
-    Map<String, Map<String, Float>> percentagePayers(List<Expense> expenses, Map<String, BigDecimal> total);
+    Map<Currency, Map<String, Float>> percentagePayers(List<Expense> expenses, Map<Currency, BigDecimal> total);
 
-    Map<String, Map<String, Float>> percentagePaymentMethods(List<Expense> expenses, Map<String, BigDecimal> total);
+    Map<Currency, Map<String, Float>> percentagePaymentMethods(List<Expense> expenses, Map<Currency, BigDecimal> total);
 }

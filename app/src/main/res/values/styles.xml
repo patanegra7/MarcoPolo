@@ -53,6 +53,13 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="chartButton" >
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/colorPrimaryMark</item>
+        <item name="android:textColor">#ffffff</item>
+    </style>
+
 
 
 </resources>

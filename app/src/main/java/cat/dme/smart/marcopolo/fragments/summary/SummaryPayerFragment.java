@@ -6,13 +6,19 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 import cat.dme.smart.marcopolo.R;
 import cat.dme.smart.marcopolo.adapters.SummaryPayerArrayAdapter;
+import cat.dme.smart.marcopolo.business.ExpenseBO;
 import cat.dme.smart.marcopolo.business.impl.ExpenseBOImpl;
 import cat.dme.smart.marcopolo.business.impl.TripBOImpl;
 import cat.dme.smart.marcopolo.dao.impl.CurrencyDaoImpl;
@@ -35,7 +41,7 @@ public class SummaryPayerFragment extends Fragment {
 
     private Long currentTripId;
 
-    //private OnFragmentInteractionListener mListener;
+    private OnSummaryPayerFragmentListener mListener;
 
     /**
      * Default constructor
@@ -69,8 +75,7 @@ public class SummaryPayerFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_summary_payer, container, false);
     }
@@ -78,17 +83,58 @@ public class SummaryPayerFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        List<Expense> payerSummary = ExpenseBOImpl.getInstance(null).amountByPayerAndCurrency(this.currentTripId);
+        ExpenseBO expenseBO = ExpenseBOImpl.getInstance(null);
+        List<Expense> payerSummary = expenseBO.amountByPayerAndCurrency(this.currentTripId);
         // Get ListView object from xml
         final ListView listView = (ListView) this.getView().findViewById(R.id.summary_payer_list);
+
+        // Getting total by currencies
+        Map<Currency, BigDecimal> total = expenseBO.calculateTotalByCurrency(payerSummary);
+
+        // Getting percentages by currencies
+        final Map<Currency, Map<String, Float>> percentages = expenseBO.percentagePayers(payerSummary, total);
+
         ArrayAdapter<Expense> adapter = new SummaryPayerArrayAdapter(this.getContext(), payerSummary);
         listView.setAdapter(adapter);
+
+        // Adding listener to access to pie chart.
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Expense itemValue = (Expense) listView.getItemAtPosition(position);
+                mListener.onPayerChartShow(percentages.get(itemValue.getCurrency()), itemValue.getCurrency());
+            }
+        });
+
+        // Getting the fragment layout
+        LinearLayout totalFragmentLayout = (LinearLayout)this.getView().findViewById(R.id.summary_payer_total_layout);
+
+        // Adding/Updating total info to the fragment
+        for(Currency currency: total.keySet()) {
+            TextView tvTotal = (TextView) totalFragmentLayout.findViewWithTag("total_payer_" + currency.getName());
+            if(tvTotal==null) {
+                tvTotal = new TextView(this.getContext());
+                tvTotal.setTag("total_payer_" + currency.getName());
+                tvTotal.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                totalFragmentLayout.addView(tvTotal);
+            }
+            tvTotal.setText(total.get(currency).toString() + " " + currency.getSymbol());
+        }
     }
 
+    public interface OnSummaryPayerFragmentListener {
+        void onPayerChartShow(Map<String, Float> percentages, Currency currency);
+    }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        if (context instanceof OnSummaryPayerFragmentListener) {
+            mListener = (OnSummaryPayerFragmentListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnSummaryPayerFragmentListener");
+        }
     }
 
     @Override

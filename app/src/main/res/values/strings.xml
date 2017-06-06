@@ -87,7 +87,10 @@
     <string name="edit.expense.payment.method">Payment Methods</string>
     <!--string name="edit.expense.validation.error">Incorrect currency name!</string -->
     <string name="edit.expense.delete.confirm">Are you sure to delete this expense?</string>
-    <string name="title_activity_main2">Main2Activity</string>
-    <string name="title_activity_main22">Main22Activity</string>
+
+    <string name="summary.currency.percentages.chart.title">Currencies</string>
+    <string name="summary.concept.percentages.chart.title">Concepts</string>
+    <string name="summary.payer.percentages.chart.title">Payers</string>
+    <string name="summary.payment.method.percentages.chart.title">Payment Methods</string>
 
 </resources>

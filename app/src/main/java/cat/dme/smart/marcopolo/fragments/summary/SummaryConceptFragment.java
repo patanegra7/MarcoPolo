@@ -1,37 +1,25 @@
 package cat.dme.smart.marcopolo.fragments.summary;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.formatter.PercentFormatter;
-import com.github.mikephil.charting.utils.ColorTemplate;
-
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import cat.dme.smart.marcopolo.R;
-import cat.dme.smart.marcopolo.adapters.CurrencyArrayAdapter;
 import cat.dme.smart.marcopolo.adapters.SummaryConceptArrayAdapter;
 import cat.dme.smart.marcopolo.business.ExpenseBO;
 import cat.dme.smart.marcopolo.business.impl.ExpenseBOImpl;
-import cat.dme.smart.marcopolo.dao.impl.CurrencyDaoImpl;
 import cat.dme.smart.marcopolo.model.Currency;
 import cat.dme.smart.marcopolo.model.Expense;
 
@@ -49,7 +37,7 @@ public class SummaryConceptFragment extends Fragment {
 
     private Long currentTripId;
 
-    //private OnFragmentInteractionListener mListener;
+    private OnSummaryConceptFragmentListener mListener;
 
     /**
      * Default constructor
@@ -83,8 +71,7 @@ public class SummaryConceptFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_summary_concept, container, false);
     }
@@ -96,95 +83,54 @@ public class SummaryConceptFragment extends Fragment {
         List<Expense> conceptSummary =  expenseBO.amountByConceptsAndCurrency(this.currentTripId);
         // Get ListView object from xml
         final ListView listView = (ListView) this.getView().findViewById(R.id.summary_concept_list);
+        // Getting total by currencies
+        Map<Currency, BigDecimal> total = expenseBO.calculateTotalByCurrency(conceptSummary);
+
+        // Getting percentages by currencies
+        final Map<Currency, Map<String, Float>> percentages = expenseBO.percentageConcepts(conceptSummary, total);
+
         ArrayAdapter<Expense> adapter = new SummaryConceptArrayAdapter(this.getContext(), conceptSummary);
         listView.setAdapter(adapter);
 
-        // Getting the fragment layout
-        LinearLayout fragmentLayout = (LinearLayout)this.getView().findViewById(R.id.summary_concept_layout);
 
-        // Getting total by currencies
-        Map<String, BigDecimal> total = expenseBO.calculateTotalByCurrency(conceptSummary);
+        // Adding listener to access to pie chart.
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Expense itemValue = (Expense) listView.getItemAtPosition(position);
+                mListener.onConceptChartShow(percentages.get(itemValue.getCurrency()), itemValue.getCurrency());
+            }
+        });
+
+        // Getting the fragment layout
+        LinearLayout totalFragmentLayout = (LinearLayout)this.getView().findViewById(R.id.summary_concept_total_layout);
 
         // Adding/Updating total info to the fragment
-        for(String currencyName: total.keySet()) {
-            TextView tvTotal = (TextView) fragmentLayout.findViewWithTag("total_concept_" + currencyName);
+        for(Currency currency: total.keySet()) {
+            TextView tvTotal = (TextView) totalFragmentLayout.findViewWithTag("total_concept_" + currency.getName());
             if(tvTotal==null) {
                 tvTotal = new TextView(this.getContext());
-                tvTotal.setTag("total_concept_" + currencyName);
+                tvTotal.setTag("total_concept_" + currency.getName());
                 tvTotal.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-                fragmentLayout.addView(tvTotal);
+                totalFragmentLayout.addView(tvTotal);
             }
-            tvTotal.setText(total.get(currencyName).toString() + " " + currencyName);
+            tvTotal.setText(total.get(currency).toString() + " " + currency.getSymbol());
         }
-
-        // Getting percentages by currencies
-        //Map<String, Map<String, Float>> percentages = expenseBO.percentageConcepts(conceptSummary, total);
-
-        // Adding percentage pie chart to the fragment
-        /*for(String currencyName: percentages.keySet()) {
-            PieChart chart = (PieChart) fragmentLayout.findViewWithTag("percentage_concept_" + currencyName);
-            if(chart==null) {
-                chart = new PieChart(this.getContext());
-                chart.setTag("percentage_concept_" + currencyName);
-                chart.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 700));
-                fragmentLayout.addView(chart);
-            }
-            List<PieEntry> entries = new ArrayList<>();
-            Map<String, Float> percentage = percentages.get(currencyName);
-            for(String key: percentage.keySet()) {
-                entries.add(new PieEntry(percentage.get(key), key));
-            }
-            PieDataSet set = new PieDataSet(entries, null);
-
-            // add a lot of colors
-
-            ArrayList<Integer> colors = new ArrayList<Integer>();
-
-/*
-        for (int c : ColorTemplate.VORDIPLOM_COLORS)
-
-            colors.add(c);
-
-        for (int c : ColorTemplate.JOYFUL_COLORS)
-            colors.add(c);
-
-            for (int c : ColorTemplate.COLORFUL_COLORS)
-                colors.add(c);
-/*
-        for (int c : ColorTemplate.LIBERTY_COLORS)
-            colors.add(c);
-
-        for (int c : ColorTemplate.PASTEL_COLORS)
-            colors.add(c);
-
-            //colors.add(ColorTemplate.getHoloBlue());
-            set.setColors(colors);
-
-            PieData data = new PieData(set);
-            data.setValueFormatter(new PercentFormatter());
-            data.setValueTextSize(12f);
-            data.setValueTextColor(Color.parseColor("#5F021F"));
-            data.setValueTypeface(Typeface.DEFAULT_BOLD);
-            chart.setEntryLabelColor(Color.parseColor("#5F021F"));
-            chart.setData(data);
-            chart.setCenterText(currencyName);
-            chart.setCenterTextColor(Color.WHITE);
-            chart.setCenterTextSize(14f);
-            chart.setEntryLabelTypeface(Typeface.DEFAULT_BOLD);
-            chart.setDrawHoleEnabled(true);
-            chart.setHoleColor(Color.DKGRAY);
-            // undo all highlights
-            //chart.highlightValues(null);
-
-            chart.invalidate(); // refresh
-        }*/
-
     }
 
+    public interface OnSummaryConceptFragmentListener {
+        void onConceptChartShow(Map<String, Float> percentages, Currency currency);
+    }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        if (context instanceof OnSummaryConceptFragmentListener) {
+            mListener = (OnSummaryConceptFragmentListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnSummaryConceptFragmentListener");
+        }
     }
 
     @Override
