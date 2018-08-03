@@ -106,20 +106,6 @@ public class SummaryPayerFragment extends Fragment {
             }
         });
 
-        // Getting the fragment layout
-        LinearLayout totalFragmentLayout = (LinearLayout)this.getView().findViewById(R.id.summary_payer_total_layout);
-
-        // Adding/Updating total info to the fragment
-        for(Currency currency: total.keySet()) {
-            TextView tvTotal = (TextView) totalFragmentLayout.findViewWithTag("total_payer_" + currency.getName());
-            if(tvTotal==null) {
-                tvTotal = new TextView(this.getContext());
-                tvTotal.setTag("total_payer_" + currency.getName());
-                tvTotal.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-                totalFragmentLayout.addView(tvTotal);
-            }
-            tvTotal.setText(total.get(currency).toString() + " " + currency.getSymbol());
-        }
     }
 
     public interface OnSummaryPayerFragmentListener {
