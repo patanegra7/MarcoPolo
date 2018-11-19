@@ -2,6 +2,8 @@ package cat.dme.smart.marcopolo.business.impl;
 
 import android.content.Context;
 
+import java.util.List;
+
 import cat.dme.smart.marcopolo.R;
 import cat.dme.smart.marcopolo.business.TripBO;
 import cat.dme.smart.marcopolo.dao.impl.ConceptDaoImpl;
@@ -14,6 +16,7 @@ import cat.dme.smart.marcopolo.model.Currency;
 import cat.dme.smart.marcopolo.model.Payer;
 import cat.dme.smart.marcopolo.model.PaymentMethod;
 import cat.dme.smart.marcopolo.model.Trip;
+import cat.dme.smart.marcopolo.model.TripConfig;
 
 /**
  * Trip Business object implementation.
@@ -112,6 +115,27 @@ public class TripBOImpl implements TripBO {
         PaymentMethodDaoImpl.getInstance().deleteByTrip(tripId);
         //Trip
         TripDaoImpl.getInstance().delete(tripId);
+    }
+
+    @Override
+    public TripConfig getTrip(Long tripId) {
+        TripConfig tripConfig = new TripConfig();
+        //Trip
+        Trip trip = TripDaoImpl.getInstance().get(tripId);
+        tripConfig.setTrip(trip);
+        //Currencies
+        List<Currency> currencies = CurrencyDaoImpl.getInstance().getAllByTrip(tripId);
+        tripConfig.setCurrencies(currencies);
+        //Concepts
+        List<Concept> concepts = ConceptDaoImpl.getInstance().getAllByTrip(tripId);
+        tripConfig.setConcepts(concepts);
+        //Payers
+        List<Payer> payers = PayerDaoImpl.getInstance().getAllByTrip(tripId);
+        tripConfig.setPayers(payers);
+        //PayMethods
+        List<PaymentMethod> paymentMethods = PaymentMethodDaoImpl.getInstance().getAllByTrip(tripId);
+        tripConfig.setPaymentMethods(paymentMethods);
+        return tripConfig;
     }
 
     @Override

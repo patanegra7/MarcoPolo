@@ -1,3 +1,6 @@
+/*
+ * Created by VIddA Software - DME Creaciones.
+ */
 package cat.dme.smart.marcopolo.activities;
 
 import android.app.DialogFragment;
@@ -7,6 +10,7 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 
+import java.math.BigDecimal;
 import java.util.Map;
 
 import cat.dme.smart.marcopolo.R;
@@ -14,6 +18,7 @@ import cat.dme.smart.marcopolo.adapters.SummaryPagerAdapter;
 import cat.dme.smart.marcopolo.fragments.summary.SummaryConceptFragment;
 import cat.dme.smart.marcopolo.fragments.summary.SummaryPayerFragment;
 import cat.dme.smart.marcopolo.fragments.summary.SummaryPaymentMethodFragment;
+import cat.dme.smart.marcopolo.fragments.summary.SummaryTotalFragment;
 import cat.dme.smart.marcopolo.fragments.summary.dialog.ConceptPieCharDialogFragment;
 import cat.dme.smart.marcopolo.fragments.summary.dialog.PayerPieCharDialogFragment;
 import cat.dme.smart.marcopolo.fragments.summary.dialog.PaymentMethodPieCharDialogFragment;
@@ -21,9 +26,7 @@ import cat.dme.smart.marcopolo.model.Currency;
 
 /**
  * Activity to manage a trip's statistic. It delegates in different fragments: currency, concepts, pay method, ...
- *
- * Created by VIddA Software - DME Creaciones.
- */
+*/
 public class SummaryActivity extends BaseMenuActivity implements //SummaryCurrencyFragment.OnSummaryCurrencyFragmentListener,
                                                                  SummaryConceptFragment.OnSummaryConceptFragmentListener,
                                                                  SummaryPayerFragment.OnSummaryPayerFragmentListener,
@@ -81,6 +84,20 @@ public class SummaryActivity extends BaseMenuActivity implements //SummaryCurren
     public void onConceptChartShow(Map<String, Float> percentages, Currency currency) {
         DialogFragment dialog = ConceptPieCharDialogFragment.newInstance(percentages, currency);
         dialog.show(this.getFragmentManager(), getString(R.string.summary_concept_percentages_chart_title));
+    }
+
+    @Override
+    public void onUpdateConceptTotals(Map<Currency, BigDecimal> totals) {
+        SummaryTotalFragment totalFragment = (SummaryTotalFragment)this.getSupportFragmentManager().findFragmentById(R.id.fragment_summary_total);
+        if (totalFragment != null) {
+            // If article frag is available, we're in two-pane layout...
+            // Call a method in the ArticleFragment to update its content
+            totalFragment.updateTotals(totals);
+        } else {
+            // Otherwise, we're in the one-pane layout and must swap frags...
+            this.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_summary_total, SummaryTotalFragment.newInstance(totals)).commit();
+        }
+
     }
 
     @Override

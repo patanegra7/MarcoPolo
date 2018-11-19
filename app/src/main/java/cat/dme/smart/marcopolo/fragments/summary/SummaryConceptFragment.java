@@ -102,24 +102,15 @@ public class SummaryConceptFragment extends Fragment {
             }
         });
 
-        // Getting the fragment layout
-        LinearLayout totalFragmentLayout = (LinearLayout)this.getView().findViewById(R.id.summary_concept_total_layout);
 
         // Adding/Updating total info to the fragment
-        for(Currency currency: total.keySet()) {
-            TextView tvTotal = (TextView) totalFragmentLayout.findViewWithTag("total_concept_" + currency.getName());
-            if(tvTotal==null) {
-                tvTotal = new TextView(this.getContext());
-                tvTotal.setTag("total_concept_" + currency.getName());
-                tvTotal.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-                totalFragmentLayout.addView(tvTotal);
-            }
-            tvTotal.setText(total.get(currency).toString() + " " + currency.getSymbol());
-        }
+        mListener.onUpdateConceptTotals(total);
+
     }
 
     public interface OnSummaryConceptFragmentListener {
         void onConceptChartShow(Map<String, Float> percentages, Currency currency);
+        void onUpdateConceptTotals(Map<Currency, BigDecimal> totals);
     }
 
     @Override

@@ -1,3 +1,6 @@
+/**
+ * Created by VIddA Software - DME Creaciones.
+ */
 package cat.dme.smart.marcopolo.business;
 
 import android.database.Cursor;
@@ -17,8 +20,6 @@ import cat.dme.smart.marcopolo.model.Trip;
 
 /**
  * Expense Business object interface.
- *
- * Created by VIddA Software - DME Creaciones.
  */
 public interface ExpenseBO {
 

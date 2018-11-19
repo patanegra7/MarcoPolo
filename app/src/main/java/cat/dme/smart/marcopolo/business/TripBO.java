@@ -1,16 +1,17 @@
+/**
+ * Created by VIddA Software - DME Creaciones.
+ */
 package cat.dme.smart.marcopolo.business;
 
-import cat.dme.smart.marcopolo.dao.BaseDao;
 import cat.dme.smart.marcopolo.model.Trip;
 import cat.dme.smart.marcopolo.model.Currency;
 import cat.dme.smart.marcopolo.model.Payer;
 import cat.dme.smart.marcopolo.model.PaymentMethod;
 import cat.dme.smart.marcopolo.model.Concept;
+import cat.dme.smart.marcopolo.model.TripConfig;
 
 /**
  * Trip Business object interface.
- *
- * Created by VIddA Software - DME Creaciones.
  */
 public interface TripBO {
     /**
@@ -33,6 +34,17 @@ public interface TripBO {
      * @param tripId a {@link Trip} unique identifier.
      */
     void deleteTrip(Long tripId);
+
+    /**
+     * Returns a @{link Trip} with its dependencies:
+     * <i>{@link Currency}</i>
+     * <i>{@link Payer}</i>
+     * <i>{@link PaymentMethod}</i>
+     * <i>{@link Concept}</i>
+     * @param tripId a {@link Trip} unique identifier..
+     * @return a {@link TripConfig}.
+     */
+    TripConfig getTrip(Long tripId);
 
     /**
      * Deletes a concept if it isn't used by any trip diary entry.

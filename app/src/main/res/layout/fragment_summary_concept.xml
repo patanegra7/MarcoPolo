@@ -47,22 +47,9 @@
 
         <ListView
             android:id="@+id/summary_concept_list"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
         </ListView>
-
-        <LinearLayout
-            android:id="@+id/summary_concept_total_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryMark"
-            android:layout_gravity="end|bottom"
-            android:paddingLeft="6dp"
-            android:paddingRight="6dp"
-            android:paddingTop="6dp"
-            android:paddingBottom="6dp"
-            android:layout_margin="12dp"
-            android:orientation="vertical" />
 
     </FrameLayout>
 

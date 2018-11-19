@@ -1,1 +1,1 @@
-editExpenseButtonSave.getContext().getResources().getResourceEntryName(editExpenseButtonSave.getContext().obtainStyledAttributes(new int[]{android.R.attr.buttonStyle}).getResourceId(0, 0))
+MarcoPolo is a trip expenses manager to personal/group use in offline. All information is persisted in the phone.
