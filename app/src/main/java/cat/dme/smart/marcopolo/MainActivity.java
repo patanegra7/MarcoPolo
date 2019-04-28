@@ -1,4 +1,4 @@
-package com.dme.smart.marcopolo;
+package cat.dme.smart.marcopolo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
