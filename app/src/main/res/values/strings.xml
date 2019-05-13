@@ -13,7 +13,7 @@
     <string name="global.current.expense">global.current.expense</string>
 
     <!-- i18n -->
-    <string name="app_name">Marco Polo2</string>
+    <string name="app_name">Marco Polo</string>
     <string name="menu.daily">Daily</string>
     <string name="menu.currency.exchange">Currency Exchange</string>
     <string name="menu.summary">Summary</string>

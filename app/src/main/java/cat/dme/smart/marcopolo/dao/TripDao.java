@@ -35,6 +35,6 @@ public interface TripDao { //extends BaseDao <Trip> {
     void update(Trip trip);
 
     @Delete
-    void delete(Long id);
+    void delete(Trip id);
 
 }

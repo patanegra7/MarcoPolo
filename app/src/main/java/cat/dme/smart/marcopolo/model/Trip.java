@@ -3,11 +3,13 @@ package cat.dme.smart.marcopolo.model;
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
 
 import java.io.Serializable;
 import java.util.Date;
 
-import cat.dme.smart.marcopolo.contants.TripStatus;
+import cat.dme.smart.marcopolo.dao.converter.DateConverter;
+import cat.dme.smart.marcopolo.dao.converter.TripStatusConverter;
 
 /**
  * Trip model bean.
@@ -15,6 +17,7 @@ import cat.dme.smart.marcopolo.contants.TripStatus;
  * Created by VIddA Software - DME Creaciones.
  */
 @Entity
+@TypeConverters({DateConverter.class, TripStatusConverter.class})
 public class Trip implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
