@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MarcoPolo</string>
+    <string name="welcome">Benvinguts viatgers!</string>
+    <string name="action_settings">Configuració</string>
+
+    <string name="menu.daily">Diari</string>
+    <string name="menu.summary">Resum</string>
+    <string name="menu.export">Exportar</string>
+    <string name="menu.about">Crèdits</string>
+
+    <string name="daily.date">Data</string>
+    <string name="daily.type">Tipus</string>
+    <string name="daily.description">Descripció</string>
+    <string name="daily.amount">Import</string>
+    <string name="daily.currency">Moneda</string>
+    <string name="daily.payer">Pagador</string>
+    <string name="daily.payMode">Tipus de pagament</string>
+
+    <string name="credits.text1">VIddA Software</string>
+    <string name="credits.text2">D.M.E. Creaciones</string>
+</resources>

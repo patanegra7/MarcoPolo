@@ -14,7 +14,7 @@ public class TripStatusConverter {
     }
 
     @TypeConverter
-    public static int fromEnume(TripStatus status){
+    public static int fromEnum(TripStatus status){
         return status.ordinal();
     }
 }

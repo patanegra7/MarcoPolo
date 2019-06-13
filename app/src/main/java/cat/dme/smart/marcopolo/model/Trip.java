@@ -1,3 +1,6 @@
+/*
+ * Created by VIddA Software - DME Creaciones.
+ */
 package cat.dme.smart.marcopolo.model;
 
 import androidx.annotation.NonNull;
@@ -13,8 +16,6 @@ import cat.dme.smart.marcopolo.dao.converter.TripStatusConverter;
 
 /**
  * Trip model bean.
- *
- * Created by VIddA Software - DME Creaciones.
  */
 @Entity
 @TypeConverters({DateConverter.class, TripStatusConverter.class})
@@ -77,10 +78,11 @@ public class Trip implements Serializable {
         this.status = status;
     }
 
+
     @Override
     public String toString() {
         return "Trip{" +
-                "_id=" + id +
+                " id=" + id +
                 ", destination='" + destination + '\'' +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +

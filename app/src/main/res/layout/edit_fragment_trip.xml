@@ -1,0 +1,81 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cat.dme.smart.marcopolo.fragment.trip.EditTripFragment"
+    android:orientation="vertical"
+    android:weightSum="3">
+
+    <TextView
+        android:id="@+id/edit.trip.title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/edit.trip.title"
+        android:textSize="10pt"/>
+
+    <EditText
+        android:id="@+id/edit.trip.destination"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/edit.trip.destination"
+        android:inputType="text" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/edit.trip.start.date"
+        android:inputType="date"
+        android:id="@+id/edit.trip.startDate"/>
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/edit.trip.end.date"
+        android:inputType="date"
+        android:id="@+id/edit.trip.endDate"/>
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edit.trip.description"
+        android:hint="@string/edit.trip.description"
+        android:inputType="textMultiLine"
+        android:gravity="top|left"
+        android:lines="5"/>
+
+    <Spinner
+        android:id="@+id/edit.trip.status"
+        android:layout_height="wrap_content"
+        android:prompt="@string/edit.trip.status"
+        android:hint="@string/edit.trip.status"
+        android:layout_width="fill_parent"/>
+
+    <LinearLayout
+        style="@style/buttonLayout"
+        android:weightSum="3">
+
+        <Button
+            android:id="@+id/edit.trip.button.save"
+            android:layout_height="wrap_content"
+            android:text="@string/button.save"
+            android:layout_width="wrap_content"
+            android:weightSum="1"/>
+
+        <Button
+            android:id="@+id/edit.trip.button.delete"
+            android:layout_height="wrap_content"
+            android:text="@string/button.delete"
+            android:layout_width="wrap_content"
+            android:visibility="invisible"
+            android:weightSum="1"/>
+
+        <Button
+            android:id="@+id/edit.trip.button.cancel"
+            android:layout_height="wrap_content"
+            android:text="@string/button.cancel"
+            android:layout_width="wrap_content"
+            android:weightSum="1"/>
+
+    </LinearLayout>
+
+</LinearLayout>

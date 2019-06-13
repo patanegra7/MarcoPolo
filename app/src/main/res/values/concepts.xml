@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="concepts">
+        <item>Accommodation</item>
+        <item>Food</item>
+        <item>Shopping</item>
+        <item>Transportation</item>
+        <item>Others</item>
+    </array>
+</resources>

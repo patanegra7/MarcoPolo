@@ -1,0 +1,40 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".activities.CreditsActivity">
+
+    <item
+        android:id="@+id/daily"
+        android:icon="@android:drawable/ic_menu_my_calendar"
+        android:title="@string/menu.daily"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/currency_exchange"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:title="@string/menu.currency.exchange"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/summary"
+        android:icon="@android:drawable/ic_menu_today"
+        android:title="@string/menu.summary"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/export"
+        android:icon="@android:drawable/ic_menu_save"
+        android:title="@string/menu.export"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/settings"
+        android:icon="@android:drawable/ic_menu_manage"
+        android:title="@string/menu.settings"
+        app:showAsAction="always|withText"/>
+    <item
+        android:id="@+id/about"
+        android:icon="@android:drawable/ic_dialog_info"
+        android:title="@string/menu.about"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/exit"
+        android:title="@string/menu.exit"
+        app:showAsAction="never"/>
+</menu>

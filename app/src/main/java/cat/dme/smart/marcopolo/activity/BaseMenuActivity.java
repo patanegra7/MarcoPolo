@@ -1,4 +1,4 @@
-/**
+/*
  * Created by VIddA Software - DME Creaciones.
  */
 package cat.dme.smart.marcopolo.activity;
@@ -6,6 +6,7 @@ package cat.dme.smart.marcopolo.activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,11 +42,11 @@ public abstract class BaseMenuActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         // Update toolbar with trip destination
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        Toolbar toolbar = this.findViewById(R.id.toolbar);
+        TextView mTitle = toolbar.findViewById(R.id.toolbar_title);
         String destination = this.getMyApplication().getCurrentTripDestination();
         if (destination!=null && destination.length()>0) {
-            // mTitle.setText(destination);
+            mTitle.setText(destination);
         }
     }
 
@@ -58,12 +59,13 @@ public abstract class BaseMenuActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent = null;
+        Intent intent;
         switch(item.getItemId()) {
             case R.id.daily:
                if(this.getMyApplication().getCurrentTripId()!=0L) {
   /*                  intent = new Intent(this, DailyActivity.class);
                     startActivity(intent);*/
+                   Toast.makeText(this.getApplicationContext(), "Not implemented", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getApplicationContext(), R.string.main_not_destination,  Toast.LENGTH_SHORT).show();
                 }
@@ -73,8 +75,7 @@ public abstract class BaseMenuActivity extends AppCompatActivity {
                 Toast.makeText(this.getApplicationContext(), "Not implemented", Toast.LENGTH_SHORT).show();
                 return(true);
             case R.id.settings:
-                /*this.startActivity(SettingsActivity.runActivity(this));*/
-                Toast.makeText(this.getApplicationContext(), "Not implemented", Toast.LENGTH_SHORT).show();
+                this.startActivity(SettingsActivity.runActivity(this));
                 return(true);
             case R.id.export:
                 /*intent = new Intent(this, ExportActivity.class);

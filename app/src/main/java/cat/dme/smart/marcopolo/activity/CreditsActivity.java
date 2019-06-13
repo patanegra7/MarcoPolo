@@ -1,4 +1,4 @@
-/**
+/*
  * Created by VIddA Software - DME Creaciones.
  */
 package cat.dme.smart.marcopolo.activity;
@@ -24,7 +24,7 @@ public class CreditsActivity extends BaseMenuActivity {
         int versionCode = BuildConfig.VERSION_CODE;
         String versionName = BuildConfig.VERSION_NAME;
 
-        TextView tvVersion = (TextView) findViewById(R.id.textVersion);
+        TextView tvVersion = findViewById(R.id.textVersion);
         tvVersion.setText(this.getString(R.string.app_name) + " " + versionName);
     }
 

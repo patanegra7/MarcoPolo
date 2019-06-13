@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="currencies_0">
+        <item>EUR</item>
+        <item>Euro</item>
+        <item>€</item>
+    </array>
+    <array name="currencies_1">
+        <item>USD</item>
+        <item>USA Dollar</item>
+        <item>$</item>
+    </array>
+</resources>
