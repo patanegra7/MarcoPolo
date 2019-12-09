@@ -23,6 +23,7 @@ import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.ArrayList;
 
 import cat.dme.smart.marcopolo.R;
 import cat.dme.smart.marcopolo.business.impl.ExpenseBOImpl;
@@ -55,8 +56,10 @@ public class ExportActivity extends BaseMenuActivity {
         tripConfig.setExpenses(expenses);
 
         // File Name
-        StringBuffer filename = new StringBuffer("TripExport-");
-        filename.append(tripConfig.getTrip().get_id());
+        //StringBuffer filename = new StringBuffer("TripExport-");
+        String destination = tripConfig.getTrip().getDestination().replace(" ", "-");
+        StringBuffer filename = new StringBuffer(destination);
+        //filename.append(tripConfig.getTrip().get_id());
         Date now = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("-yyyyMMdd-HHmm");
         filename.append(sdf.format(now));
@@ -70,7 +73,7 @@ public class ExportActivity extends BaseMenuActivity {
         } catch (Exception e) {
             e.printStackTrace();
             jsonPath = "No se ha podido crear JSON... " + e.toString();
-        }
+        } 
 	
 	    //CSV
 	    String csvTrip = this.generateCSV(tripConfig); 
@@ -80,10 +83,24 @@ public class ExportActivity extends BaseMenuActivity {
         } catch (Exception e) {
             e.printStackTrace();
             csvPath = "No se ha podido crear CSV... " + e.toString();
-        }
+        } 
 
+        //CSV per day
+        List<String> csvDayTrip = this.generateCSVperDay(tripConfig, filename); 
+	    StringBuffer csvDayPath = new StringBuffer();
+        int i = 0;
+        while(i < csvDayTrip.size()) {
+            try {            
+                csvDayPath.append(this.objectToFile(csvDayTrip.get(i), csvDayTrip.get(++i).concat("csv")));
+            } catch (Exception e) {
+                e.printStackTrace();
+                csvDayPath.append("No se ha podido crear CSV... " + e.toString());
+            }
+            i++;
+        }
         TextView tvExport = (TextView) this.findViewById(R.id.textExport);
-        tvExport.setText("Export JSON to: " + jsonPath + " and CSV to: " + csvPath);
+        tvExport.setText("Export JSON to: " + jsonPath + " and CSV to: " + csvPath + " and CSV per day to: " + csvDayPath.toString());
+        //tvExport.setText("Export CSV per day to: " + csvDayPath.toString());
     }
 
     public String generateCSV(final TripConfig tripConfig) {
@@ -116,6 +133,48 @@ public class ExportActivity extends BaseMenuActivity {
             csv.append(expense.getPaymentMethod().getName()).append(LINEA_END);
         }
         return csv.toString();
+    }
+
+    public List<String> generateCSVperDay(final TripConfig tripConfig, final StringBuffer filename) {
+        List<String> days = new ArrayList<>();
+        // Formatters
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE dd-MM-yyyy HH:mm");
+        SimpleDateFormat sdfFileName = new SimpleDateFormat("yyyyMMdd-EEE");
+        DecimalFormat df = new DecimalFormat("#,##");
+        // Header
+        StringBuffer csvHeader = new StringBuffer();
+        csvHeader.append("Date").append(SEPARATOR);
+        csvHeader.append("Concept").append(SEPARATOR);
+        csvHeader.append("Description").append(SEPARATOR);
+        csvHeader.append("Amount").append(SEPARATOR);
+        csvHeader.append("Currency").append(SEPARATOR);
+        csvHeader.append("Payer").append(SEPARATOR);
+        csvHeader.append("PaymentMethod").append(LINEA_END);
+        
+        StringBuffer csv = new StringBuffer(csvHeader); 
+        String day = null;
+        for(Expense expense: tripConfig.getExpenses()) {
+            String nextDay = sdfFileName.format(expense.getDate());
+            if(day==null) {
+                day = nextDay;
+            } else if(!nextDay.equals(day)) {
+                days.add(csv.toString());
+                days.add(filename.toString().concat(day));
+                csv = new StringBuffer(csvHeader);
+                day = nextDay;
+            }
+            csv.append(sdf.format(expense.getDate())).append(SEPARATOR);
+            csv.append(expense.getConcept().getName()).append(SEPARATOR);
+            csv.append(expense.getDescription()).append(SEPARATOR);
+            //csv.append(df.format(expense.getAmount())).append(SEPARATOR);
+            csv.append(NumberFormat.getInstance().format(expense.getAmount())).append(SEPARATOR);
+            csv.append(expense.getCurrency().getName()).append(SEPARATOR);
+            csv.append(expense.getPayer().getName()).append(SEPARATOR);
+            csv.append(expense.getPaymentMethod().getName()).append(LINEA_END);
+        }
+        days.add(csv.toString());
+        days.add(filename.toString().concat(day));
+        return days;
     }
 
 	public  boolean isStoragePermissionGranted() {
