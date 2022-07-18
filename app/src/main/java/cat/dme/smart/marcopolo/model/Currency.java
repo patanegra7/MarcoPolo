@@ -1,6 +1,9 @@
 package cat.dme.smart.marcopolo.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+
+import nl.qbusict.cupboard.annotation.Ignore;
 
 /**
  * Currency model bean.
@@ -12,6 +15,10 @@ public class Currency implements Serializable {
     private String code;
     private String symbol;
     private String name;
+    @Ignore
+    private Boolean main;
+    @Ignore
+    private BigDecimal changeRate;
     private Long tripId;
 
     public Long get_id() {
@@ -46,6 +53,22 @@ public class Currency implements Serializable {
         this.name = name;
     }
 
+    public Boolean getMain() {
+        return this.main;
+    }
+
+    public void setMain(Boolean main) {
+        this.main = main;
+    }
+
+    public BigDecimal getChangeRate() {
+        return this.changeRate;
+    }
+
+    public void setChangeRate(BigDecimal changeRate) {
+        this.changeRate = changeRate;
+    }
+
     public Long getTripId() {
         return tripId;
     }
@@ -61,6 +84,8 @@ public class Currency implements Serializable {
                 ", code='" + code + '\'' +
                 ", symbol='" + symbol + '\'' +
                 ", name='" + name + '\'' +
+                ", main='" + main + '\'' +
+                ", changeRate='" + changeRate + '\'' +
                 ", tripId=" + tripId +
                 '}';
     }

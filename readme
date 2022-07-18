@@ -1,1 +1,14 @@
 MarcoPolo is a trip expenses manager to personal/group use in offline. All information is persisted in the phone.
+
+Para compilar desde linea de comandos:
+
+export ANDROID_HOME=/home/dmolina/Android/Sdk/
+./gradlew installDebug
+
+Con el movil enchufado se instal.
+
+Idem con el emulador, que se arranca:
+
+cd /home/dmolina/Android/Sdk/emulator
+sudo ./emulator -avd Nexus_4_API_16
+
