@@ -18,6 +18,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Writer;
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
@@ -28,6 +29,7 @@ import java.util.ArrayList;
 import cat.dme.smart.marcopolo.R;
 import cat.dme.smart.marcopolo.business.impl.ExpenseBOImpl;
 import cat.dme.smart.marcopolo.business.impl.TripBOImpl;
+import cat.dme.smart.marcopolo.model.Currency;
 import cat.dme.smart.marcopolo.model.Expense;
 import cat.dme.smart.marcopolo.model.TripConfig;
 
@@ -52,7 +54,20 @@ public class ExportActivity extends BaseMenuActivity {
         super.onResume();
         Long selectedTripId = this.getMyApplication().getCurrentTripId();
         TripConfig tripConfig = TripBOImpl.getInstance(null).getTrip(selectedTripId);
+        for (Currency currency: tripConfig.getCurrencies()) {
+            currency.setMain("EUR".equals(currency.getCode()));
+            if(!currency.getMain()) {
+                currency.setChangeRate(BigDecimal.ONE);
+            }
+        }
+
         List<Expense> expenses = ExpenseBOImpl.getInstance(null).getByTrip(selectedTripId);
+        for(Expense expense: expenses) {
+            expense.getCurrency().setMain("EUR".equals(expense.getCurrency().getCode()));
+            if(!expense.getCurrency().getMain()) {
+                expense.getCurrency().setChangeRate(BigDecimal.ONE);
+            }
+        }
         tripConfig.setExpenses(expenses);
 
         // File Name
@@ -76,7 +91,7 @@ public class ExportActivity extends BaseMenuActivity {
         } 
 	
 	    //CSV
-	    String csvTrip = this.generateCSV(tripConfig); 
+	    /*String csvTrip = this.generateCSV(tripConfig);
 	    String csvPath = null;
         try {
             csvPath = this.objectToFile(csvTrip, filename.toString().concat(".csv"));
@@ -97,9 +112,9 @@ public class ExportActivity extends BaseMenuActivity {
                 csvDayPath.append("No se ha podido crear CSV... " + e.toString());
             }
             i++;
-        }
+        }*/
         TextView tvExport = (TextView) this.findViewById(R.id.textExport);
-        tvExport.setText("Export JSON to: " + jsonPath + " and CSV to: " + csvPath + " and CSV per day to: " + csvDayPath.toString());
+        tvExport.setText("Export JSON to: " + jsonPath); // + " and CSV to: " + csvPath + " and CSV per day to: " + csvDayPath.toString());
         //tvExport.setText("Export CSV per day to: " + csvDayPath.toString());
     }
 
